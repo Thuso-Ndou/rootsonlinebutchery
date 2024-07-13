@@ -32,7 +32,7 @@ export const food_list = [
         image: chicken_1,
         price: 12,
         description: "Food provides essential nutrients",
-        catetory: "chicken"
+        category: "Pork"
     },
     {
         _id: "2",
@@ -40,7 +40,7 @@ export const food_list = [
         image: chicken_1,
         price: 24,
         description: "Food provides essential nutrients",
-        catetory: "chicken"
+        category: "Chicken"
     },
     {
         _id: "3",
@@ -48,7 +48,7 @@ export const food_list = [
         image: chicken_1,
         price: 72,
         description: "Food provides essential nutrients",
-        catetory: "chicken"
+        category: "Beef"
     },
     {
         _id: "4",
@@ -56,7 +56,7 @@ export const food_list = [
         image: chicken_1,
         price: 23,
         description: "Food provides essential nutrients",
-        catetory: "chicken"
+        category: "Vegetables"
     },
     {
         _id: "5",
@@ -64,7 +64,7 @@ export const food_list = [
         image: chicken_1,
         price: 52,
         description: "Food provides essential nutrients",
-        catetory: "chicken"
+        category: "Pork"
     },
     {
         _id: "6",
@@ -72,7 +72,7 @@ export const food_list = [
         image: chicken_1,
         price: 42,
         description: "Food provides essential nutrients",
-        catetory: "chicken"
+        category: "Chicken"
     },
     {
         _id: "7",
@@ -80,7 +80,7 @@ export const food_list = [
         image: chicken_1,
         price: 17,
         description: "Food provides essential nutrients",
-        catetory: "chicken"
+        category: "Chicken"
     },
     {
         _id: "8",
@@ -88,7 +88,7 @@ export const food_list = [
         image: chicken_1,
         price: 12,
         description: "Food provides essential nutrients",
-        catetory: "chicken"
+        category: "Chicken"
     },
 ]
 
