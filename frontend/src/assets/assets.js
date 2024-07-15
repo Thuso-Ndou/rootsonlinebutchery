@@ -8,7 +8,7 @@ import beef_menu from './beef.jpg';
 import fish_menu from './fish.jpg';
 import lamp_menu from './lamb.webp';
 import pork_menu from './pork.jpg';
-import wors_menu from './wors.jpg';
+import other_menu from './other.jpg';
 import filledstar from './filledstar.png';
 import plus from './plus.png';
 import addGreen from './addGreen.png';
@@ -470,6 +470,6 @@ export const menu_list = [
     },
     {
         menu_name: 'Other',
-        menu_image: wors_menu,
+        menu_image: other_menu,
     }
 ]
