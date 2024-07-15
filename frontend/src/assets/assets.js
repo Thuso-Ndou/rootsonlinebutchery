@@ -6,7 +6,7 @@ import spicies_menu from './spice.jpg';
 import veg_menu from './veg.jpg';
 import beef_menu from './beef.jpg';
 import fish_menu from './fish.jpg';
-import lamp_menu from './lamp.jpg';
+import lamp_menu from './lamb.webp';
 import pork_menu from './pork.jpg';
 import wors_menu from './wors.jpg';
 import filledstar from './filledstar.png';
@@ -21,6 +21,8 @@ import chickenHeads from './chicken heads.jpeg';
 import chickenLivers from './Chicken Livers.jpeg';
 import chickenThighs from './Chicken Thighs.jpeg';
 import chickenGizzards from './Chicken Gizzards.jpeg';
+import chickenNecks from './chicken Necks.jpg';
+import chickenWings from './chicken Wings.jpg';
 
 import beefBrisket from './beef brisket.jpeg';
 import beefChuck from './beef chuck.jpg';
@@ -58,6 +60,11 @@ import robotPeppers from './Robot Peppers .jpeg';
 import tomatoes from './Tomatoes.jpeg';
 import beetroot from './beetroot.jpeg';
 
+import muttonChops from './lamb.webp';
+import lambChumpChop from './Lamb Chump Chop.webp';
+import lambKnuckleChop from './LambKnuckle Chop.webp';
+import lambLegChop from './Lamb Leg Chop.webp';
+
 export const assets = {
     logo,
     search,
@@ -78,23 +85,6 @@ export const food_list = [
         category: "Beef"
     },
     {
-        _id: "29",
-        name: "Baby Spinach",
-        image: babySpinach,
-        price: 12,
-        description: "Food provides essential nutrients",
-        category: "fruits & Veg"
-    }
-    ,
-    {
-        _id: "28",
-        name: "Beetroot",
-        image: beetroot,
-        price: 12,
-        description: "Food provides essential nutrients",
-        category: "fruits & Veg"
-    } ,
-    {
         _id: "25",
         name: "Beef Rib Chops",
         image: beefRibChops,
@@ -110,12 +100,12 @@ export const food_list = [
         category: "Beef"
     },
     {
-        _id: "27",
-        name: "Broccoli",
-        image: broccoli,
+        _id: "33",
+        name: "Cucumber",
+        image: cucumber,
         price: 12,
         description: "Food provides essential nutrients",
-        category: "fruits & Veg"
+        category: "Fruits & Veg"
     },
     {
         _id: "1",
@@ -126,12 +116,36 @@ export const food_list = [
         category: "Chicken"
     },
     {
+        _id: "9",
+        name: "Beef Stew",
+        image: beefStew,
+        price: 17,
+        description: "Food provides essential nutrients",
+        category: "Beef"
+    },
+    {
+        _id: "23",
+        name: "Coriander Powder",
+        image: corianderPowder,
+        price: 23,
+        description: "Food provides essential nutrients",
+        category: "Spices"
+    },
+    {
+        _id: "42",
+        name: "Chicken Wings",
+        image: chickenWings,
+        price: 12,
+        description: "Food provides essential nutrients",
+        category: "Chicken"
+    },
+    {
         _id: "30",
         name: "Cabbage",
         image: cabbage,
         price: 12,
         description: "Food provides essential nutrients",
-        category: "fruits & Veg"
+        category: "Fruits & Veg"
     },
     {
         _id: "2",
@@ -147,7 +161,15 @@ export const food_list = [
         image: carrots,
         price: 12,
         description: "Food provides essential nutrients",
-        category: "fruits & Veg"
+        category: "Fruits & Veg"
+    },
+    {
+        _id: "43",
+        name: "Chicken Necks",
+        image: chickenNecks,
+        price: 12,
+        description: "Food provides essential nutrients",
+        category: "Chicken"
     },
     {
         _id: "32",
@@ -155,7 +177,7 @@ export const food_list = [
         image: corn,
         price: 12,
         description: "Food provides essential nutrients",
-        category: "fruits & Veg"
+        category: "Fruits & Veg"
     }
     ,
     {
@@ -188,23 +210,23 @@ export const food_list = [
         image: cauliflower,
         price: 12,
         description: "Food provides essential nutrients",
-        category: "fruits & Veg"
+        category: "Fruits & Veg"
     },
     {
-        _id: "9",
-        name: "Beef Stew",
-        image: beefStew,
-        price: 17,
-        description: "Food provides essential nutrients",
-        category: "Beef"
-    },
-    {
-        _id: "33",
-        name: "Cucumber",
-        image: cucumber,
+        _id: "46",
+        name: "Mutton Chops",
+        image: muttonChops,
         price: 12,
         description: "Food provides essential nutrients",
-        category: "fruits & Veg"
+        category: "Lamb"
+    },
+    {
+        _id: "27",
+        name: "Broccoli",
+        image: broccoli,
+        price: 12,
+        description: "Food provides essential nutrients",
+        category: "Fruits & Veg"
     },
     {
         _id: "35",
@@ -212,7 +234,7 @@ export const food_list = [
         image: greenPeas,
         price: 12,
         description: "Food provides essential nutrients",
-        category: "fruits & Veg"
+        category: "Fruits & Veg"
     },
     {
         _id: "16",
@@ -228,7 +250,15 @@ export const food_list = [
         image: tomatoes,
         price: 12,
         description: "Food provides essential nutrients",
-        category: "fruits & Veg"
+        category: "Fruits & Veg"
+    },
+    {
+        _id: "45",
+        name: "Lamb Chump Chop",
+        image: lambChumpChop,
+        price: 12,
+        description: "Food provides essential nutrients",
+        category: "Lamb"
     },
     {
         _id: "4",
@@ -244,14 +274,14 @@ export const food_list = [
         image: potatoes,
         price: 12,
         description: "Food provides essential nutrients",
-        category: "fruits & Veg"
+        category: "Fruits & Veg"
     },{
         _id: "40",
         name: "Red Onions",
         image: redOnions,
         price: 12,
         description: "Food provides essential nutrients",
-        category: "fruits & Veg"
+        category: "Fruits & Veg"
     },
     {
         _id: "41",
@@ -259,7 +289,7 @@ export const food_list = [
         image: robotPeppers,
         price: 12,
         description: "Food provides essential nutrients",
-        category: "fruits & Veg"
+        category: "Fruits & Veg"
     },
     {
         _id: "18",
@@ -268,6 +298,14 @@ export const food_list = [
         price: 23,
         description: "Food provides essential nutrients",
         category: "Spices"
+    },
+    {
+        _id: "44",
+        name: "Lamb Knuckle Chop",
+        image: lambKnuckleChop,
+        price: 12,
+        description: "Food provides essential nutrients",
+        category: "Lamb"
     },
     {
         _id: "17",
@@ -302,14 +340,6 @@ export const food_list = [
         category: "Beef"
     },
     {
-        _id: "23",
-        name: "Coriander Powder",
-        image: corianderPowder,
-        price: 23,
-        description: "Food provides essential nutrients",
-        category: "Spices"
-    },
-    {
         _id: "19",
         name: "Tumeric",
         image: tumeric,
@@ -332,6 +362,31 @@ export const food_list = [
         price: 23,
         description: "Food provides essential nutrients",
         category: "Spices"
+    },
+    {
+        _id: "29",
+        name: "Baby Spinach",
+        image: babySpinach,
+        price: 12,
+        description: "Food provides essential nutrients",
+        category: "Fruits & Veg"
+    }
+    ,
+    {
+        _id: "47",
+        name: "Lamb Leg Chop",
+        image: lambLegChop,
+        price: 12,
+        description: "Food provides essential nutrients",
+        category: "Lamb"
+    },
+    {
+        _id: "28",
+        name: "Beetroot",
+        image: beetroot,
+        price: 12,
+        description: "Food provides essential nutrients",
+        category: "Fruits & Veg"
     },
     {
         _id: "5",
