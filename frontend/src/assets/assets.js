@@ -9,11 +9,38 @@ import fish_menu from './fish.jpg';
 import lamp_menu from './lamp.jpg';
 import pork_menu from './pork.jpg';
 import wors_menu from './wors.jpg';
-import chicken_1 from './chicken_1.jpg';
 import filledstar from './filledstar.png';
 import plus from './plus.png';
 import addGreen from './addGreen.png';
 import removeRed from './minusRed.png';
+
+import fullChicken from './Full Chicken.jpeg';
+import chickenBreast from './Chicken breast.jpeg';
+import chickenFeets from './Chicken Feets.jpeg';
+import chickenHeads from './chicken heads.jpeg';
+import chickenLivers from './Chicken Livers.jpeg';
+import chickenThighs from './Chicken Thighs.jpeg';
+import chickenGizzards from './Chicken Gizzards.jpeg';
+
+import beefBrisket from './beef brisket.jpeg';
+import beefChuck from './beef chuck.jpg';
+import beefLiver from './beef liver.jpg';
+import beefSteak from './beef steak.jpeg';
+import beefStew from './beef stew.jpeg';
+import beefGround from './ground beef.jpg';
+
+import porkBoneless from './pork boneless.jpg';
+import porkChops from './pork chops.jpg';
+import porkCubes from './pork cubes.jpg';
+import bladePorkSteak from './blade pork steak.jpg';
+
+import paprika from './paprika.jpeg';
+import periPeri from './peri-peri.jpeg';
+import corianderPowder from './corianderPowder.jpeg';
+import tumeric from './tumeric.jpeg';
+import basallPovser from './basallPovser.jpeg';
+import gingerPowder from './gingerPowder.jpeg';
+import cuminPowder from './cuminPowder.jpeg';
 
 export const assets = {
     logo,
@@ -27,69 +54,198 @@ export const assets = {
 
 export const food_list = [
     {
+        _id: "8",
+        name: "Beef Brisket",
+        image: beefBrisket,
+        price: 17,
+        description: "Food provides essential nutrients",
+        category: "Beef"
+    },
+    {
         _id: "1",
-        name: "Chicken Breast",
-        image: chicken_1,
+        name: "Full Chicken",
+        image: fullChicken,
         price: 12,
         description: "Food provides essential nutrients",
-        category: "Pork"
+        category: "Chicken"
     },
     {
         _id: "2",
-        name: "Chicken Feetst",
-        image: chicken_1,
+        name: "Chicken Breast",
+        image: chickenBreast,
         price: 24,
         description: "Food provides essential nutrients",
         category: "Chicken"
     },
     {
-        _id: "3",
-        name: "Chicken Breast",
-        image: chicken_1,
-        price: 72,
-        description: "Food provides essential nutrients",
-        category: "Beef"
-    },
-    {
-        _id: "4",
-        name: "Chicken Breast",
-        image: chicken_1,
-        price: 23,
-        description: "Food provides essential nutrients",
-        category: "Vegetables"
-    },
-    {
-        _id: "5",
-        name: "Chicken Breast",
-        image: chicken_1,
-        price: 52,
+        _id: "15",
+        name: "Pork Boneless",
+        image: porkBoneless,
+        price: 17,
         description: "Food provides essential nutrients",
         category: "Pork"
     },
     {
+        _id: "3",
+        name: "Chicken Feets",
+        image: chickenFeets,
+        price: 72,
+        description: "Food provides essential nutrients",
+        category: "Chicken"
+    },
+    {
+        _id: "14",
+        name: "Pork Chops",
+        image: porkChops,
+        price: 17,
+        description: "Food provides essential nutrients",
+        category: "Pork"
+    },
+    {
+        _id: "9",
+        name: "Beef Stew",
+        image: beefStew,
+        price: 17,
+        description: "Food provides essential nutrients",
+        category: "Beef"
+    },
+    {
+        _id: "16",
+        name: "Pork Cubes",
+        image: porkCubes,
+        price: 17,
+        description: "Food provides essential nutrients",
+        category: "Pork"
+    },
+    {
+        _id: "4",
+        name: "Chicken Heads",
+        image: chickenHeads,
+        price: 23,
+        description: "Food provides essential nutrients",
+        category: "Chicken"
+    },
+    {
+        _id: "18",
+        name: "Paprika",
+        image: paprika,
+        price: 23,
+        description: "Food provides essential nutrients",
+        category: "Spices"
+    },
+    {
+        _id: "17",
+        name: "Blade Pork Steak",
+        image: bladePorkSteak,
+        price: 17,
+        description: "Food provides essential nutrients",
+        category: "Pork"
+    },
+    {
+        _id: "10",
+        name: "Beef Chuck",
+        image: beefChuck,
+        price: 17,
+        description: "Food provides essential nutrients",
+        category: "Beef"
+    },
+    {
+        _id: "22",
+        name: "Peri-Peri",
+        image: periPeri,
+        price: 23,
+        description: "Food provides essential nutrients",
+        category: "Spices"
+    },
+    {
+        _id: "11",
+        name: "Beef Steak",
+        image: beefSteak,
+        price: 17,
+        description: "Food provides essential nutrients",
+        category: "Beef"
+    },
+    {
+        _id: "23",
+        name: "Coriander Powder",
+        image: corianderPowder,
+        price: 23,
+        description: "Food provides essential nutrients",
+        category: "Spices"
+    },
+    {
+        _id: "19",
+        name: "Tumeric",
+        image: tumeric,
+        price: 23,
+        description: "Food provides essential nutrients",
+        category: "Spices"
+    },
+    {
+        _id: "12",
+        name: "Beef Liver",
+        image: beefLiver,
+        price: 17,
+        description: "Food provides essential nutrients",
+        category: "Beef"
+    },
+    {
+        _id: "24",
+        name: "Basall Povser",
+        image: basallPovser,
+        price: 23,
+        description: "Food provides essential nutrients",
+        category: "Spices"
+    },
+    {
+        _id: "5",
+        name: "Chicken Livers",
+        image: chickenLivers,
+        price: 52,
+        description: "Food provides essential nutrients",
+        category: "Chicken"
+    },
+    {
+        _id: "20",
+        name: "Ginger Powder",
+        image: gingerPowder,
+        price: 23,
+        description: "Food provides essential nutrients",
+        category: "Spices"
+    },
+    {
         _id: "6",
-        name: "Chicken Breast",
-        image: chicken_1,
+        name: "Chicken Thighs",
+        image: chickenThighs,
         price: 42,
         description: "Food provides essential nutrients",
         category: "Chicken"
     },
     {
         _id: "7",
-        name: "Chicken Breast",
-        image: chicken_1,
+        name: "Chicken Gizzards",
+        image: chickenGizzards,
         price: 17,
         description: "Food provides essential nutrients",
         category: "Chicken"
     },
     {
-        _id: "8",
-        name: "Chicken Breast",
-        image: chicken_1,
-        price: 12,
+        _id: "21",
+        name: "Cumin Powder",
+        image: cuminPowder,
+        price: 23,
         description: "Food provides essential nutrients",
-        category: "Chicken"
+        category: "Spices"
     },
+    {
+        _id: "13",
+        name: "Beef Ground",
+        image: beefGround,
+        price: 17,
+        description: "Food provides essential nutrients",
+        category: "Beef"
+    },
+    
 ]
 
 export const menu_list = [
@@ -106,7 +262,7 @@ export const menu_list = [
         menu_image: spicies_menu,
     },
     {
-        menu_name: 'Vegetables',
+        menu_name: 'Fruits & Veg',
         menu_image: veg_menu,
     },
     {
@@ -114,15 +270,15 @@ export const menu_list = [
         menu_image: pork_menu,
     },
     {
-        menu_name: 'Wors',
-        menu_image: wors_menu,
-    },
-    {
-        menu_name: 'Lamp',
+        menu_name: 'Lamb',
         menu_image: lamp_menu,
     },
     {
         menu_name: 'Fish',
         menu_image: fish_menu,
     },
+    {
+        menu_name: 'Other',
+        menu_image: wors_menu,
+    }
 ]
