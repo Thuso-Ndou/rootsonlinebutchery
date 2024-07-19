@@ -7,16 +7,16 @@ export default function Footer() {
     <div className="footer" id="footer">
       <div className='footer-content'>
         <div className="footer-content-left">
-          <img src={assets.logo} alt=''/>
+          <img src={assets.logo} alt='' className='logo'/>
           <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cum maiores reprehenderit quis impedit in error quas vel beatae quidem dolor, saepe odio quae et atque nihil voluptatem iure! Fugiat, quo!</p>
           <div className="footer-social-icons">
-            <img src={assets.fab} alt=''/>
-            <img src={assets.insta} alt=''/>
-            <img src={assets.twitter} alt=''/>
+            <img src={assets.fab} alt='' className='icons'/>
+            <img src={assets.insta} alt='' className='icons'/>
+            <img src={assets.twitter} alt='' className='icons'/>
           </div>
         </div>
         <div className="footer-content-center">
-          <h2>Roots</h2>
+          <h2>Butchery</h2>
           <ul>
             <li>Home</li>
             <li>About Us</li>
@@ -25,7 +25,7 @@ export default function Footer() {
           </ul>
         </div>
         <div className="footer-content-right">
-          <h2>Contact</h2>
+          <h2>Contact Us</h2>
           <ul>
             <li>+27-60-878-8226</li>
             <li>contact@rootsonline.com</li>
