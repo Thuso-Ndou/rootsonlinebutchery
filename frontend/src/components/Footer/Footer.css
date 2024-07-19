@@ -54,3 +54,15 @@
 .footer-copyrights{
     color: #ddd;
 }
+
+@media (max-width:750px){
+    .footer-content{
+        display: flex;
+        flex-direction: column;
+        gap: 35px;
+    }
+
+    .footer-copyrights{
+        text-align: center;
+    }
+}

@@ -5,6 +5,7 @@
   margin: 0;
   box-sizing: border-box;
   font-family: Roboto Condensed,italic;
+  scroll-behavior: smooth;
 }
 
 body{
