@@ -15,36 +15,36 @@ export default function PlaceOrder() {
           <input type="text" placeholder='First Name'/>
           <input type="text" placeholder='Last Name' />
         </div>
-        <input type="email" placeholder='Email Address'/>
         <input type="text" placeholder='Street'/>
         <div className="mult-fields">
-          <input type="text" placeholder='City'/>
-          <input type="text" placeholder='State' />
+          <input type="text" placeholder='Suburb/Town'/>
+          <input type="text" placeholder='City' />
         </div>
         <div className="mult-fields">
           <input type="text" placeholder='Zip Code'/>
           <input type="text" placeholder='Country' />
         </div>
+        <input type="email" placeholder='Email Address'/>
         <input type="text" placeholder='Phone' />
       </div>
 
-      <div className="place-order-rigt">
+      <div className="place-order-right">
       <div className="cart-total">
           <h2>Total Billing</h2>
           <div>
-            <div className="cart-total-details">
+          <div className="cart-total-details">
               <p>Subtotal</p>
               <p>R{getTotalAmount()}</p>
             </div>
             <hr />
             <div className="cart-total-details">
               <p>Delivery Fee</p>
-              <p>R{20}</p>
+              <p>R{getTotalAmount()===0?0:20}</p>
             </div>
             <hr />
             <div className="cart-total-details">
               <b>Total</b>
-              <b>R{getTotalAmount() + 20}</b>
+              <b>R{getTotalAmount()===0?0:getTotalAmount() + 20}</b>
             </div>
           </div>
           <button>PROCEED TO PAYMENT</button>

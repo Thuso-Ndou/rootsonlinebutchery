@@ -52,12 +52,12 @@ export default function Cart() {
             <hr />
             <div className="cart-total-details">
               <p>Delivery Fee</p>
-              <p>R{20}</p>
+              <p>R{getTotalAmount()===0?0:20}</p>
             </div>
             <hr />
             <div className="cart-total-details">
               <b>Total</b>
-              <b>R{getTotalAmount() + 20}</b>
+              <b>R{getTotalAmount()===0?0:getTotalAmount() + 20}</b>
             </div>
           </div>
           <button onClick={()=>navigate('/order')}>PROCEED TO CHECKOUT</button>
