@@ -5,7 +5,7 @@ import './Cart.css';
 
 export default function Cart() {
 
-  const {cartItems,food_list,removeFromCart} = useContext(StoreContext)
+  const {cartItems,food_list,removeFromCart,getTotalAmount} = useContext(StoreContext)
 
   return (
     <div className='cart'>
@@ -44,17 +44,17 @@ export default function Cart() {
           <div>
             <div className="cart-total-details">
               <p>Subtotal</p>
-              <p>{0}</p>
+              <p>R{getTotalAmount()}</p>
             </div>
             <hr />
             <div className="cart-total-details">
               <p>Delivery Fee</p>
-              <p>{20}</p>
+              <p>R{20}</p>
             </div>
             <hr />
             <div className="cart-total-details">
               <b>Total</b>
-              <b>{0}</b>
+              <b>R{getTotalAmount() + 20}</b>
             </div>
           </div>
           <button>PROCEED TO CHECKOUT</button>
