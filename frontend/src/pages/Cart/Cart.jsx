@@ -40,7 +40,7 @@ export default function Cart() {
       </div>
       <div className="cart-bottom">
         <div className="cart-total">
-          <h2>Cart Totals</h2>
+          <h2>Your Cart</h2>
           <div>
             <div className="cart-total-details">
               <p>Subtotal</p>
@@ -49,14 +49,23 @@ export default function Cart() {
             <hr />
             <div className="cart-total-details">
               <p>Delivery Fee</p>
-              <p>{2}</p>
+              <p>{20}</p>
             </div>
             <hr />
             <div className="cart-total-details">
               <b>Total</b>
               <b>{0}</b>
             </div>
-            <button>PROCEED TO CHECKOUT</button>
+          </div>
+          <button>PROCEED TO CHECKOUT</button>
+        </div>
+        <div className='cart-promo'>
+          <div>
+            <p>Enter your promo code here</p>
+            <div className="cart-promo-input">
+              <input type="text" placeholder='Promo Code' />
+              <button>Submit</button>
+            </div>
           </div>
         </div>
       </div>

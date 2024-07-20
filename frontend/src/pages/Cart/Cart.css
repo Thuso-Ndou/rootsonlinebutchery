@@ -29,3 +29,70 @@
 .cart-items-item .cancel{
     cursor: pointer;
 }
+
+.cart-bottom{
+  margin-top: 80px;
+  display: flex;
+  justify-content: space-between;
+  gap: max(12vw,20px);
+}
+
+.cart-total{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.cart-total-details{
+    display: flex;
+    justify-content: space-between;
+    color: #343434;
+}
+
+.cart-total hr{
+    margin: 10px 0px;
+}
+
+.cart-total button{
+    border: none;
+    color: white;
+    background-color: #cb2c2c;
+    width: max(15vw, 200px);
+    padding: 12px 0;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.cart-promo{
+    flex: 1;
+}
+
+.cart-promo p{
+    color: #343434;
+}
+
+.cart-promo-input{
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #eaeaea;
+    border-radius: 4px;
+}
+
+.cart-promo-input input{
+    background: transparent;
+    border: none;
+    outline: none;
+    padding-left: 10px;
+}
+
+.cart-promo-input button{
+    width: max(10vw, 10px);
+    padding: 12px 5px;
+    background-color: #060606;
+    border: none;
+    color: white;
+    border-radius: 4px;
+}
