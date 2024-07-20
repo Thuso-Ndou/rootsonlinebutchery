@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Nav.css';
 
-export default function Nav() {
+export default function Nav({setShowLogin}) {
 
     const [menu,setMenu] = useState("menu");
 
@@ -25,7 +25,7 @@ export default function Nav() {
                 <img src={assets.cart} alt="cart" />
                 <div className='dot'></div>
             </div>
-            <button>Sign In</button>
+            <button onClick={()=>setShowLogin(true)}>Sign In</button>
         </div>
     </div>
   )

@@ -16,6 +16,7 @@ import removeRed from './minusRed.png';
 import fab from './fab-icon.png';
 import insta from './insta-icon.png';
 import twitter from './twitter-icon.png';
+import cancel from './cancel.png';
 
 import fullChicken from './Full Chicken.jpeg';
 import chickenBreast from './Chicken breast.jpeg';
@@ -79,6 +80,7 @@ export const assets = {
     fab,
     insta,
     twitter,
+    cancel,
 }
 
 export const food_list = [
