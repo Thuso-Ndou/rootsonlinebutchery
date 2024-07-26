@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import { connDB } from './config/db.js';
+import meatRouter from "./routes/meatRoute.js";
 
 // app config
 const app = express();
@@ -13,6 +14,10 @@ app.use(cors());
 
 // connect to dabase
 connDB();
+
+// API end point
+app.use("/api/meat", meatRouter);
+app.use("/images",express.static('uploads'))
 
 // test API
 app.get("/", (req, res) => {
