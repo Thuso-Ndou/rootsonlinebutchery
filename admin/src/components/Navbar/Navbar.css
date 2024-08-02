@@ -12,3 +12,15 @@
 .navbar .profile{
     width: 40px;
 }
+
+.navbar .admin-text{
+    font-weight: 500;
+    font-size: 25px;
+    color: #0d0a0a9b
+}
+
+@media (max-width:580px){
+    .navbar p{
+        display: none;
+    }
+}
