@@ -30,3 +30,8 @@
         display: none;
     }
 }
+
+.sidebar-option.active{
+    background-color: #fff0ed;
+    border-color: #cb2c2c;
+}
