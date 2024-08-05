@@ -12,13 +12,18 @@ const List = () => {
 
   const fetchList = async () => {
     const response = await axios.get(`${url}/api/meat/list`);
-    console.log(response.data);
     if(response.data.success){
       setList(response.data.data);
     }
     else{
       toast.error("Error");
     }
+  }
+
+  const removeProduct = async(meatID) =>{
+    //api call
+    const response = await axios.post(`${url}/api/meat/remove`,{id:meatID});
+    await fetchList();
   }
 
   useEffect(()=>{
@@ -43,7 +48,7 @@ const List = () => {
               <p>{item.name}</p>
               <p>{item.category}</p>
               <p>R{item.price}</p>
-              <p>x</p>
+              <p className='cancel-text' onClick={()=>removeProduct(item._id)}>--</p>
             </div>
           )
         })}
