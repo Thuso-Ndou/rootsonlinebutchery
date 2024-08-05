@@ -12,6 +12,7 @@
 
 .add-image img{ 
     width: 120px;
+    height: 120px;
 }
 
 .add-product-name, .add-product-des{
