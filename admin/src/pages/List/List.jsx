@@ -24,6 +24,12 @@ const List = () => {
     //api call
     const response = await axios.post(`${url}/api/meat/remove`,{id:meatID});
     await fetchList();
+    if(response.data.success){
+      toast.success(response.data.message);
+    }
+    else{
+      toast.error("Error");
+    }
   }
 
   useEffect(()=>{
