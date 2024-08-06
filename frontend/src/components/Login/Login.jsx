@@ -6,6 +6,17 @@ import { assets } from '../../assets/assets';
 export default function Login({setShowLogin}) {
 
     const [currentState, setCurrentState] = useState("Login");
+    const [data,setData] = useState({
+        name:"",
+        email: "",
+        password: ""
+    });
+
+    const onChangeHandler = (event) => {
+        const name = event.target.name;
+        const value = event.target.value;
+        setData(data=>({...data,[name]:value}))
+    }
 
   return (
     <div className='login'>
@@ -17,9 +28,9 @@ export default function Login({setShowLogin}) {
                 <img onClick={()=>setShowLogin(false)} src={assets.cancel}  alt=''/>
             </div>
             <div className="login-input">
-                {currentState==="Login"?<></>:<input type="text" placeholder='Username' required />}
-                <input type="email" placeholder='Email' required />
-                <input type="password" placeholder='Password' required />
+                {currentState==="Login"?<></>:<input name='name' onChange={onChangeHandler} value={data.name} type="text" placeholder='Username' required />}
+                <input name='email' onChange={onChangeHandler} value={data.email} type="email" placeholder='Email' required />
+                <input name='password' onChange={onChangeHandler} value={data.password} type="password" placeholder='Password' required />
             </div>
             <button>{currentState==="Sign Up"?"Create Account":"Login"}</button>
             <div className="login-condition">
