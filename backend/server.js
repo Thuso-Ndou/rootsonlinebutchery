@@ -3,6 +3,7 @@ import cors from "cors";
 import { connDB } from './config/db.js';
 import meatRouter from "./routes/meatRoute.js";
 import userRouter from "./routes/userRoute.js";
+import 'dotenv/config';
 
 // app config
 const app = express();
