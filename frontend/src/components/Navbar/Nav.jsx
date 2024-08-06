@@ -1,14 +1,23 @@
 //import React from 'react'
 import { assets } from '../../assets/assets';
 import { useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Nav.css';
 import { StoreContext } from '../../context/StoreContext';
 
 export default function Nav({setShowLogin}) {
 
-    const [menu,setMenu] = useState("menu");
+    const [menu,setMenu] = useState("home");
     const {getTotalAmount,token,setToken} = useContext(StoreContext);
+
+    const navigate = useNavigate();
+
+    const logout = () => {
+        localStorage.removeItem("token");
+        setToken("");
+        // navigate user to home page
+        navigate("/");
+    }
 
   return (
     <div className='navbar'>
@@ -30,7 +39,7 @@ export default function Nav({setShowLogin}) {
             {!token?<button onClick={()=>setShowLogin(true)}>Sign In</button>:<div className='navbar-profile'>
             <img src={assets.userProfile} alt="" />
             <ul className="nav-profile-dropdown">
-                <li><img src={assets.logoutIcon} alt="" /><p>Logout</p></li>
+                <li onClick={logout}><img src={assets.logoutIcon} alt="" /><p>Logout</p></li>
             </ul>
             </div>}    
         </div>
