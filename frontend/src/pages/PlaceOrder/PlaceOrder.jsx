@@ -2,6 +2,7 @@
 import { useContext, useState } from 'react';
 import './PlaceOrder.css';
 import { StoreContext } from '../../context/StoreContext';
+import axios from 'axios';
 
 export default function PlaceOrder() {
 
@@ -31,13 +32,24 @@ export default function PlaceOrder() {
     food_list.map((item) => {
       if(cartItems[item._id]>0){
         let itemInfo = item;
-        itemInfo["Quantity"] = cartItems[item._id];
+        itemInfo["quantity"] = cartItems[item._id];
         orderItems.push(itemInfo);
       }
     })
-    console.log(orderItems);
-    
-    //call api
+    let orderData = {
+      address: data,
+      items: orderItems,
+      amount: getTotalAmount()+20,
+    }
+    // send to api
+    let response = await axios.post(url+"/api/order/place",orderData,{headers:{token}});
+    if(response.data.success){
+      const {session_url} = response.data;
+      window.location.replace(session_url);
+    }
+    else{
+      alert("Error");
+    }
   }
 
   return (
@@ -45,20 +57,20 @@ export default function PlaceOrder() {
       <div className="place-order-left">
       <p className="title">Delivery Information</p>
         <div className="mult-fields">
-          <input name='firstName' onChange={onChangeHandler} value={data.firstName}  type="text" placeholder='First Name'/>
-          <input name='lastName' onChange={onChangeHandler} value={data.lastName}  type="text" placeholder='Last Name' />
+          <input required name='firstName' onChange={onChangeHandler} value={data.firstName}  type="text" placeholder='First Name'/>
+          <input required name='lastName' onChange={onChangeHandler} value={data.lastName}  type="text" placeholder='Last Name' />
         </div>
-        <input name='street' onChange={onChangeHandler} value={data.street} type="text" placeholder='Street'/>
+        <input required name='street' onChange={onChangeHandler} value={data.street} type="text" placeholder='Street'/>
         <div className="mult-fields">
-          <input name='suburb' onChange={onChangeHandler} value={data.suburb} type="text" placeholder='Suburb/Town'/>
-          <input name='city' onChange={onChangeHandler} value={data.city} type="text" placeholder='City' />
+          <input required name='suburb' onChange={onChangeHandler} value={data.suburb} type="text" placeholder='Suburb/Town'/>
+          <input required name='city' onChange={onChangeHandler} value={data.city} type="text" placeholder='City' />
         </div>
         <div className="mult-fields">
-          <input name='zipCode' onChange={onChangeHandler} value={data.zipCode} type="text" placeholder='Zip Code'/>
-          <input name='province' onChange={onChangeHandler} value={data.province} type="text" placeholder='Province' />
+          <input required name='zipCode' onChange={onChangeHandler} value={data.zipCode} type="text" placeholder='Zip Code'/>
+          <input required name='province' onChange={onChangeHandler} value={data.province} type="text" placeholder='Province' />
         </div>
-        <input name='email' onChange={onChangeHandler} value={data.email} type="email" placeholder='Email Address'/>
-        <input name='phone' onChange={onChangeHandler} value={data.phone} type="text" placeholder='Phone' />
+        <input required name='email' onChange={onChangeHandler} value={data.email} type="email" placeholder='Email Address'/>
+        <input required name='phone' onChange={onChangeHandler} value={data.phone} type="text" placeholder='Phone' />
       </div>
 
       <div className="place-order-right">
