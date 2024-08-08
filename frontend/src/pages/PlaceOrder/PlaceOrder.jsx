@@ -14,7 +14,7 @@ export default function PlaceOrder() {
     suburb: "",
     city: "",
     zipCode: "",
-    country: "",
+    province: "",
     email: "",
     phone: ""
   })
@@ -25,13 +25,28 @@ export default function PlaceOrder() {
     setData(data=>({...data,[name]:value}))
   }
 
+  const placeOrder = async (event) => {
+    event.preventDefault();
+    let orderItems = [];
+    food_list.map((item) => {
+      if(cartItems[item._id]>0){
+        let itemInfo = item;
+        itemInfo["Quantity"] = cartItems[item._id];
+        orderItems.push(itemInfo);
+      }
+    })
+    console.log(orderItems);
+    
+    //call api
+  }
+
   return (
-    <form className="place-order">  
+    <form onSubmit={placeOrder} className="place-order">  
       <div className="place-order-left">
       <p className="title">Delivery Information</p>
         <div className="mult-fields">
           <input name='firstName' onChange={onChangeHandler} value={data.firstName}  type="text" placeholder='First Name'/>
-          <input name='lastname' onChange={onChangeHandler} value={data.lastName}  type="text" placeholder='Last Name' />
+          <input name='lastName' onChange={onChangeHandler} value={data.lastName}  type="text" placeholder='Last Name' />
         </div>
         <input name='street' onChange={onChangeHandler} value={data.street} type="text" placeholder='Street'/>
         <div className="mult-fields">
@@ -40,7 +55,7 @@ export default function PlaceOrder() {
         </div>
         <div className="mult-fields">
           <input name='zipCode' onChange={onChangeHandler} value={data.zipCode} type="text" placeholder='Zip Code'/>
-          <input name='country' onChange={onChangeHandler} value={data.country} type="text" placeholder='Country' />
+          <input name='province' onChange={onChangeHandler} value={data.province} type="text" placeholder='Province' />
         </div>
         <input name='email' onChange={onChangeHandler} value={data.email} type="email" placeholder='Email Address'/>
         <input name='phone' onChange={onChangeHandler} value={data.phone} type="text" placeholder='Phone' />
@@ -65,7 +80,7 @@ export default function PlaceOrder() {
               <b>R{getTotalAmount()===0?0:getTotalAmount() + 20}</b>
             </div>
           </div>
-          <button>PROCEED TO PAYMENT</button>
+          <button type='submit'>PROCEED TO PAYMENT</button>
         </div>
       </div>
     </form>
