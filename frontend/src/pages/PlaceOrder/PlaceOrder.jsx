@@ -1,7 +1,8 @@
 //import React from 'react'
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import './PlaceOrder.css';
 import { StoreContext } from '../../context/StoreContext';
+import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
 
 export default function PlaceOrder() {
@@ -50,6 +51,17 @@ export default function PlaceOrder() {
       alert("Error to proceed to checkout")
     }
   }
+
+  const navigate = useNavigate();
+
+  useEffect(()=>{
+    if(!token){
+      navigate('/cart')
+    }
+    else if(getTotalAmount()===0){
+      navigate('/cart')
+    }
+  },[token])
 
   return (
     <form onSubmit={onOrder} className="place-order">  
