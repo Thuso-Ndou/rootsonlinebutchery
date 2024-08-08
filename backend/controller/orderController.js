@@ -103,7 +103,7 @@ const listOrders = async (req, res) => {
 // api for updating status
 const updateStatus = async (req, res) => {
     try {
-        await orderModel.findByIdAndUpdate(rerq.body.orderId,{status: req.body.status});
+        await orderModel.findByIdAndUpdate(req.body.orderId,{status: req.body.status});
         res.json({success:true,message:"Status updated"});
     } catch (error) {
         console.log(error);
