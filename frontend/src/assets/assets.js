@@ -19,6 +19,7 @@ import twitter from './twitter-icon.png';
 import cancel from './cancel.png';
 import userProfile from './user.png';
 import logoutIcon from './logout.png';
+import parcel from './parcel-48.png';
 
 import fullChicken from './Full Chicken.jpeg';
 import chickenBreast from './Chicken breast.jpeg';
@@ -84,7 +85,8 @@ export const assets = {
     twitter,
     cancel,
     userProfile,
-    logoutIcon
+    logoutIcon,
+    parcel
 }
 
 export const food_list = [

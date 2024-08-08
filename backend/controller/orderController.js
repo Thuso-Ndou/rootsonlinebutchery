@@ -78,4 +78,15 @@ const verifyOrder = async(req, res) => {
     }
 }
 
-export {placeOrder, verifyOrder};
+// user orders frontend linkup
+const userOrders = async (req,res) => {
+    try {
+        const orders = await orderModel.find({userID:req.body.userID});
+        res.json({success:true,data:orders});
+    } catch (error) {
+        console.log(error);
+        res.json({success:false,message:"Error retrieving orders"});
+    }
+}
+
+export {placeOrder, verifyOrder, userOrders};
