@@ -1,31 +1,49 @@
 //import React from 'react'
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import './PlaceOrder.css';
 import { StoreContext } from '../../context/StoreContext';
 
 export default function PlaceOrder() {
 
-  const {getTotalAmount} = useContext(StoreContext)
+  const {getTotalAmount,token,food_list,cartItems,url} = useContext(StoreContext);
+
+  const [data, setData] = useState({
+    firstName: "",
+    lastName: "",
+    street: "",
+    suburb: "",
+    city: "",
+    zipCode: "",
+    country: "",
+    email: "",
+    phone: ""
+  })
+
+  const onChangeHandler = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    setData(data=>({...data,[name]:value}))
+  }
 
   return (
     <form className="place-order">  
       <div className="place-order-left">
       <p className="title">Delivery Information</p>
         <div className="mult-fields">
-          <input type="text" placeholder='First Name'/>
-          <input type="text" placeholder='Last Name' />
+          <input name='firstName' onChange={onChangeHandler} value={data.firstName}  type="text" placeholder='First Name'/>
+          <input name='lastname' onChange={onChangeHandler} value={data.lastName}  type="text" placeholder='Last Name' />
         </div>
-        <input type="text" placeholder='Street'/>
+        <input name='street' onChange={onChangeHandler} value={data.street} type="text" placeholder='Street'/>
         <div className="mult-fields">
-          <input type="text" placeholder='Suburb/Town'/>
-          <input type="text" placeholder='City' />
+          <input name='suburb' onChange={onChangeHandler} value={data.suburb} type="text" placeholder='Suburb/Town'/>
+          <input name='city' onChange={onChangeHandler} value={data.city} type="text" placeholder='City' />
         </div>
         <div className="mult-fields">
-          <input type="text" placeholder='Zip Code'/>
-          <input type="text" placeholder='Country' />
+          <input name='zipCode' onChange={onChangeHandler} value={data.zipCode} type="text" placeholder='Zip Code'/>
+          <input name='country' onChange={onChangeHandler} value={data.country} type="text" placeholder='Country' />
         </div>
-        <input type="email" placeholder='Email Address'/>
-        <input type="text" placeholder='Phone' />
+        <input name='email' onChange={onChangeHandler} value={data.email} type="email" placeholder='Email Address'/>
+        <input name='phone' onChange={onChangeHandler} value={data.phone} type="text" placeholder='Phone' />
       </div>
 
       <div className="place-order-right">
