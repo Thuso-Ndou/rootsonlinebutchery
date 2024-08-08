@@ -18,6 +18,32 @@ export default function Nav({setShowLogin}) {
         // navigate user to home page
         navigate("/");
     }
+    const handleMenuClick = () => {
+        setMenu("menu");
+        navigate("/"); // navigate to the home page first
+        setTimeout(() => {
+            const section = document.querySelector('#explore-menu');
+            section?.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+    }
+
+    const handleContactClick = () => {
+        setMenu("contact-us");
+        navigate("/"); // navigate to the home page first
+        setTimeout(() => {
+            const section = document.querySelector('#footer');
+            section?.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+    }
+
+    const handleOrderClick = () => {
+        setMenu("track-order");
+        navigate("/trackOrders"); // navigate to the view orders page
+        setTimeout(() => {
+            const orderSection = document.querySelector('#order-section');
+            orderSection?.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+    }
 
   return (
     <div className='navbar'>
@@ -25,9 +51,9 @@ export default function Nav({setShowLogin}) {
 
         <ul className='navbar-menu'>
             <Link to='/'  onClick={()=>setMenu("home")} className={menu==='home'?'active':''}>Home</Link>
-            <a href='#explore-menu' onClick={()=>setMenu("menu")} className={menu==='menu'?'active':''}>Menu</a>
-            <Link to='/trackOrders' onClick={()=>setMenu("track-order")}  className={menu==='track-order'?'active':''}>View Orders</Link>
-            <a href='#footer' onClick={()=>setMenu("contact-us")} className={menu==='contact-us'?'active':''}>Contact Us</a>
+            <div id='na' onClick={handleMenuClick} className={menu==='menu'?'active':''}>Menu</div>
+            <div id='na' onClick={handleOrderClick}  className={menu==='track-order'?'active':''}>View Orders</div>
+            <div id='na' onClick={handleContactClick} className={menu==='contact-us'?'active':''}>Contact Us</div>
         </ul>
 
         <div className='navbar-right'>

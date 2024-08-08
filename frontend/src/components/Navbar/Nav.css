@@ -147,3 +147,7 @@
 .nav-profile-dropdown li:hover{
     color: #cb2c2c;
 }
+
+#na{
+    cursor: pointer;
+}
