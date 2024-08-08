@@ -3,6 +3,7 @@ import cors from "cors";
 import { connDB } from './config/db.js';
 import meatRouter from "./routes/meatRoute.js";
 import userRouter from "./routes/userRoute.js";
+import cartRouter from "./routes/cartRoutes.js";
 import 'dotenv/config';
 
 // app config
@@ -21,6 +22,7 @@ connDB();
 app.use("/api/meat", meatRouter);
 app.use("/images",express.static('uploads'));
 app.use("/api/user",userRouter);
+app.use("/api/cart",cartRouter);
 
 // test API
 app.get("/", (req, res) => {
