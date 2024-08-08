@@ -4,6 +4,7 @@ import './Orders.css';
 import axios from 'axios';
 import {toast} from 'react-toastify';
 import { useEffect } from 'react';
+import {assets} from '../../assets/assets';
 
 const Orders = ({url}) => {
   const [orders, setOrders] = useState([]);
@@ -24,8 +25,43 @@ const Orders = ({url}) => {
   },[])
 
   return (
-    <div>
-
+    <div className='order add'>
+      <h3>Recent Orders</h3>
+      <div className="order-list">
+        {orders.map((order,index)=>(
+          <div key={index} className='order-item'>
+            <img src={assets.parcel2} alt="" />
+            <div>
+              <p className='order-item-f'>
+                {order.items.map((item,index)=>{
+                  if(index === order.items.length - 1){
+                    return item.name + " x " + item.quantity;
+                  }
+                  else{
+                    return item.name + " x " + item.quantity + ", ";
+                  }
+                })}
+              </p>
+              <p className='order-item-n'>
+                {order.address.firstName + " " + order.address.lastName}
+              </p>
+              <div className="order-item-a">
+                <p>{order.address.street + ","}</p>
+                <p>{order.address.suburb + ","}</p>
+                <p>{order.address.city + ", " + order.address.province  + ", " + order.address.zipCode}</p>
+              </div>
+              <p className='order-item-p'>{order.address.phone}</p>
+            </div>
+            <p>Items: {order.items.length}</p>
+            <p>R{order.amount}.00</p>
+            <select>
+              <option value="Food Packaging">Food Packaging</option>
+              <option value="Out For Delivery">Out For Delivery</option>
+              <option value="Delivered">Delivered</option>
+            </select>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
