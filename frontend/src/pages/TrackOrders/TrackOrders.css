@@ -52,3 +52,7 @@
         font-size: 10px;
     }
 }
+
+button:hover{
+    color: #cb2c2c;
+}
