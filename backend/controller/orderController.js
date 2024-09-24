@@ -136,37 +136,74 @@ const verifyOrder = async (req, res) => {
 };
 
 // user orders frontend linkup
-const userOrders = async (req,res) => {
+const userOrders = async (req, res) => {
     try {
-        const orders = await orderModel.find({userID:req.body.userID});
-        res.json({success:true,data:orders});
+        // Fetch orders for the specific user and populate the items and product details
+        const orders = await orderModel.find({ userId: req.body.userId })
+            .populate({
+                path: 'items', // Populate the 'items' field
+                populate: {
+                    path: 'product', // Populate the 'product' field inside each item
+                    model: 'meat' // product model
+                }
+            })
+            .populate('payment') // Populate the payment details
+            .populate('address'); // Populate the address details
+
+        res.json({ success: true, data: orders });
     } catch (error) {
         console.log(error);
-        res.json({success:false,message:"Error retrieving orders"});
+        res.json({ success: false, message: "Error retrieving orders" });
     }
 }
 
 // find all orders for customers and them on the admin panel
 const listOrders = async (req, res) => {
     try {
-        const orders = await orderModel.find({});
-        res.json({success:true,data:orders});
+        // Fetch all orders and populate the references for items, product, and address
+        const orders = await orderModel.find({})
+            .populate({
+                path: 'items',
+                populate: {
+                    path: 'product',
+                    model: 'meat' // product model name
+                }
+            })
+            .populate('address'); // Populate address details
+
+        res.json({ success: true, data: orders });
     } catch (error) {
         console.log(error);
-        res.json({success:false,message:"Error retrieving orders"});
+        res.json({ success: false, message: "Error retrieving orders" });
     }
 }
 
 // api for updating status
 const updateStatus = async (req, res) => {
     try {
-        await orderModel.findByIdAndUpdate(req.body.orderId,{status: req.body.status});
-        res.json({success:true,message:"Status updated"});
+        // Find the order by ID and update its status
+        const updatedOrder = await orderModel.findByIdAndUpdate(
+            req.body.orderId,
+            { status: req.body.status },
+            { new: true } // This option returns the modified document
+        ).populate({
+            path: 'items',
+            populate: {
+                path: 'product',
+                model: 'meat' // Replace with your product model name
+            }
+        }).populate('address'); // Populate address details if needed
+
+        if (!updatedOrder) {
+            return res.json({ success: false, message: "Order not found" });
+        }
+
+        res.json({ success: true, message: "Status updated", data: updatedOrder });
     } catch (error) {
         console.log(error);
-        res.json({success:false,message:"Error updating"});
-        
+        res.json({ success: false, message: "Error updating status" });
     }
-}
+};
+
 
 export {placeOrder, verifyOrder, userOrders, listOrders,updateStatus};

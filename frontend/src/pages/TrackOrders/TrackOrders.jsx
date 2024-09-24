@@ -7,18 +7,30 @@ import { assets } from '../../assets/assets';
 const TrackOrders = () => {
   // Function to fetch orders
   const { url, token } = useContext(StoreContext);
-  const [orders, setData] = useState([]);
+  const [orders, setOrders] = useState([]);
 
   const fetchOrders = async () => {
-    const response = await axios.post(url+"/api/order/userorders",{},{headers:{token}});
-    setData(response.data.data);
-  }
+    try {
+      const response = await axios.post(url+"/api/order/userorders", {}, { headers: {Authorization: `Bearer ${token}`}});
 
-  useEffect(()=>{
-    if(token){
+      if (response.data.success) {
+        setOrders(response.data.data);
+      } else {
+        console.error("Failed to fetch orders:", response.data.message);
+      }
+      console.log("Orders fetched" + orders);
+      console.log(response.data);
+      console.log(token);
+    } catch (error) {
+      console.error("Error fetching orders:", error);
+    }
+  };
+
+  useEffect(() => {
+    if (token) {
       fetchOrders();
     }
-  },[token]);
+  }, [token]);
 
   return (
     <div id="order-section" className="my-orders">

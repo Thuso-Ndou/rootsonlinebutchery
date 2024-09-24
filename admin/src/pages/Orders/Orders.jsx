@@ -13,7 +13,6 @@ const Orders = ({ url }) => {
       const response = await axios.get(`${url}/api/order/list`);
       if (response.data.success) {
         setOrders(response.data.data);
-        console.log(response.data.data);
       } else {
         toast.error("Error fetching orders");
       }
@@ -24,26 +23,28 @@ const Orders = ({ url }) => {
   };
 
   // Function to change order status
-  const statusHandler = async (event, orderId) => {
-    try {
+const statusHandler = async (event, orderId) => {
+  try {
       const response = await axios.post(`${url}/api/order/status`, {
-        orderId,
-        status: event.target.value,
+          orderId,
+          status: event.target.value,
       });
       if (response.data.success) {
-        await fetchOrders();
+          // Optionally use response.data.data to update the specific order in state
+          await fetchOrders(); // Refresh the order list
       } else {
-        toast.error("Error updating order status");
+          toast.error("Error updating order status");
       }
-    } catch (error) {
+  } catch (error) {
       console.error("Error updating order status:", error);
       toast.error("Error updating order status");
-    }
-  };
+  }
+};
 
   useEffect(() => {
     fetchOrders();
   }, [url]);
+
 
   return (
     <div className='order add'>
