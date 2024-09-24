@@ -1,5 +1,5 @@
 import express from 'express';
-import  {addMeat,meatList,removeMeat} from '../controller/meatController.js';
+import  {addMeat,meatList,removeMeat,searchProducts} from '../controller/meatController.js';
 import multer from 'multer';
 
 // get post methods
@@ -18,6 +18,7 @@ const upload = multer({storage: storage});
 
 meatRouter.post("/add",upload.single("image"),addMeat);
 meatRouter.get("/list",meatList);
-meatRouter.post("/remove",removeMeat)
+meatRouter.post("/remove",removeMeat);
+meatRouter.get('/search', searchProducts);
 
 export default meatRouter;

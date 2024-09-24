@@ -45,4 +45,18 @@ const removeMeat = async (req,res) => {
     }
 }
 
-export {addMeat,meatList,removeMeat}
+// Search Products function
+const searchProducts = async (req, res) => {
+    try {
+        const query = req.query.query; // Get the search query from request parameters
+        const products = await meatModel.find({ 
+            name: { $regex: query, $options: 'i' } // Case-insensitive search for product names
+        });
+        res.json({ success: true, products });
+    } catch (error) {
+        console.error("Error searching products:", error);
+        res.json({ success: false, message: "Error fetching search results" });
+    }
+};
+
+export {addMeat,meatList,removeMeat,searchProducts}

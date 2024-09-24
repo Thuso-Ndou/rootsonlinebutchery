@@ -8,6 +8,7 @@ import { StoreContext } from '../../context/StoreContext';
 export default function Nav({setShowLogin}) {
 
     const [menu,setMenu] = useState("home");
+    const [searchQuery, setSearchQuery] = useState(""); // New state for search input
     const {getTotalAmount,token,setToken} = useContext(StoreContext);
 
     const navigate = useNavigate();
@@ -45,6 +46,13 @@ export default function Nav({setShowLogin}) {
         }, 100);
     }
 
+    const handleSearchSubmit = (e) => {
+        e.preventDefault();
+        if (searchQuery) {
+            navigate(`/search?query=${searchQuery}`); // Navigate to the search results page
+        }
+    };
+
   return (
     <div className='navbar'>
         <Link to='/' onClick={()=>setMenu("home")}><img src={assets.logo} alt=""  className='logo'/></Link>
@@ -57,8 +65,20 @@ export default function Nav({setShowLogin}) {
         </ul>
 
         <div className='navbar-right'>
-            <div><img src={assets.helpY}/></div>
-            <img src={assets.search} alt="search" />
+            
+            {/* Search Input */}
+            <form onSubmit={handleSearchSubmit}>
+                    <div className="navbar-search">
+                    <input 
+                        type="text" className='search-input'
+                        placeholder="Search for products..." 
+                        value={searchQuery} 
+                        onChange={(e) => setSearchQuery(e.target.value)} 
+                    />
+                    <img src={assets.search} alt="search" onClick={handleSearchSubmit}/>
+                    </div>
+                </form>
+                <div><img src={assets.helpY}/></div>
             <div className='navbar-search-icon'>
                 <Link to='/cart'><img src={assets.cart} alt="cart" /></Link>
                 <div className={getTotalAmount()===0?"":"dot"}></div>
