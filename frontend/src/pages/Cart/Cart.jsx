@@ -1,12 +1,19 @@
 //import React from 'react'
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { StoreContext } from '../../context/StoreContext';
 import './Cart.css';
 import { useNavigate } from 'react-router-dom';
 
 export default function Cart() {
 
-  const {cartItems,food_list,removeFromCart,getTotalAmount,url} = useContext(StoreContext)
+  const {cartItems,food_list,removeFromCart,getTotalAmount,url} = useContext(StoreContext);
+
+  const [promoCode, setPromoCode] = useState('');
+
+  const handlePromoCodeSubmit = () => {
+    // Logic for applying the promo code
+    console.log("Promo code submitted:", promoCode);
+  };
 
   const navigate = useNavigate();
 
@@ -23,23 +30,24 @@ export default function Cart() {
         </div>
         <br />
         <hr />
-        {food_list.map((item,index)=>{
-          if(cartItems[item._id]>0){
-            return(
-              <div>
+        {food_list.map((item) => {
+    if (cartItems[item._id] > 0) {
+        return (
+            <div key={item._id}>
                 <div className='cart-items-title cart-items-item'>
-                <img src={url+"/images/"+item.image} alt=''/>
-                <p>{item.name}</p>
-                <p>R{item.price}</p>
-                <p>{cartItems[item._id]}</p>
-                <p>R{item.price*cartItems[item._id]}</p>
-                <p onClick={()=>removeFromCart(item._id)} className='cancel'>--</p>
-              </div>
-              <hr/>
-              </div>
-            )
-          }
-        })}
+                    <img src={url + "/images/" + item.image} alt='' />
+                    <p>{item.name}</p>
+                    <p>R{item.price}</p>
+                    <p>{cartItems[item._id]}</p>
+                    <p>R{item.price * cartItems[item._id]}</p>
+                    <p onClick={() => removeFromCart(item._id)} className='cancel'>--</p>
+                </div>
+                <hr />
+            </div>
+        );
+    }
+})}
+
       </div>
       <div className="cart-bottom">
         <div className="cart-total">
@@ -66,12 +74,12 @@ export default function Cart() {
           <div>
             <p>Enter your promo code here</p>
             <div className="cart-promo-input">
-              <input type="text" placeholder='Promo Code' />
-              <button>Submit</button>
+              <input type="text" placeholder='Promo Code' value={promoCode} onChange={(e) => setPromoCode(e.target.value)}/>
+              <button onClick={handlePromoCodeSubmit}>Submit</button>
             </div>
           </div>
         </div>
       </div>
     </div>
   )
-}
+} 

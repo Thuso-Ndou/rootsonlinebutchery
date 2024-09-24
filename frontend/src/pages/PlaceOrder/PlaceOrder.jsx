@@ -30,28 +30,41 @@ export default function PlaceOrder() {
   const onOrder = async(event) => {
     event.preventDefault();
     let orderItems = [];
-    food_list.map((i)=>{
+    food_list.map((i) => {
       if(cartItems[i._id]>0){
         let itemInfo = i;
         itemInfo["quantity"] = cartItems[i._id];
+        itemInfo["productId"] = i._id;
         orderItems.push(itemInfo)
       }
-    })
+    });
+
     let orderData = {
-      address:data,
-      items:orderItems,
-      amount: getTotalAmount()+20,
-    }
-    let response  = await axios.post(url+"/api/order/place",orderData,{headers:{token}});
-    if(response.data.success){
-      const {session_url} = response.data;
-      window.location.replace(session_url);
-    }
-    else{
-      alert("Error to proceed to checkout")
+        address: data,
+        items: orderItems,
+        amount: getTotalAmount() + 20,
+    };
+
+    console.log('Order data:', orderData);
+    console.log('Order items:', orderData.items);
+
+    try {
+        let response = await axios.post(url + "/api/order/place", orderData, {
+            headers: { Authorization: `Bearer ${token}` }
+        });
+        console.log(response);
+        console.log(response.data);
+        console.log(token);
+        if (response.data.success) {
+            const { session_url } = response.data;
+            window.location.replace(session_url);
+        } else {
+            alert("Error to proceed to checkout");
+        }
+    } catch (error) {
+        console.error("Error placing order:", error);
     }
   }
-
   const navigate = useNavigate();
 
   useEffect(()=>{

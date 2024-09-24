@@ -6,6 +6,8 @@ import userRouter from "./routes/userRoute.js";
 import cartRouter from "./routes/cartRoutes.js";
 import 'dotenv/config';
 import orderRouter from "./routes/orderRoute.js";
+import addressRouter from "./routes/addressRoute.js";
+import authMiddleWare from "./middleware/auth.js";
 
 // app config
 const app = express();
@@ -22,9 +24,10 @@ connDB();
 // API end point
 app.use("/api/meat", meatRouter);
 app.use("/images",express.static('uploads'));
-app.use("/api/user",userRouter);
-app.use("/api/cart",cartRouter);
+app.use("/api/user", userRouter);
+app.use("/api/cart", cartRouter);
 app.use("/api/order", orderRouter);
+app.use("/api/address", addressRouter);
 
 // test API
 app.get("/", (req, res) => {
@@ -35,5 +38,3 @@ app.get("/", (req, res) => {
 app.listen(port, (req, res) => {
     console.log(`Server running on http://localhost:${port}` );
 })
-
-//mongodb+srv://thusondou:thusoND@21@cluster0.n3anfx2.mongodb.net/?
