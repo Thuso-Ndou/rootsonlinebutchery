@@ -66,8 +66,10 @@ const statusHandler = async (event, orderId) => {
                 <p>{`${order.address.street},`}</p>
                 <p>{`${order.address.suburb},`}</p>
                 <p>{`${order.address.city}, ${order.address.province}, ${order.address.zipCode}`}</p>
+                
               </div>
               <p className='order-item-p'>{order.address.phone}</p>
+              <p>{order.createdAt}</p>
             </div>
             <p>Items: {order.items.length}</p>
             <p>R{order.amount}.00</p>

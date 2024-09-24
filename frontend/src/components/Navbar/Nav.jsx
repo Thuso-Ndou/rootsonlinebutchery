@@ -57,6 +57,7 @@ export default function Nav({setShowLogin}) {
         </ul>
 
         <div className='navbar-right'>
+            <div><img src={assets.helpY}/></div>
             <img src={assets.search} alt="search" />
             <div className='navbar-search-icon'>
                 <Link to='/cart'><img src={assets.cart} alt="cart" /></Link>

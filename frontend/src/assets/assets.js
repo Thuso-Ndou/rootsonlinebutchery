@@ -20,6 +20,7 @@ import cancel from './cancel.png';
 import userProfile from './user.png';
 import logoutIcon from './logout.png';
 import parcel from './parcel-48.png';
+import helpY from './helpY.png';
 
 import fullChicken from './Full Chicken.jpeg';
 import chickenBreast from './Chicken breast.jpeg';
@@ -86,7 +87,8 @@ export const assets = {
     cancel,
     userProfile,
     logoutIcon,
-    parcel
+    parcel,
+    helpY
 }
 
 export const food_list = [
