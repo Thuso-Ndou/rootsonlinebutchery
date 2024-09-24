@@ -48,7 +48,10 @@ const statusHandler = async (event, orderId) => {
 
   return (
     <div className='order add'>
-      <h3>Recent Orders</h3>
+      <div className="hsort">
+        <h3>Recent Orders</h3>
+        <p className="sortData">Sort <img src={assets.sort}/></p>
+      </div>
       <div className="order-list">
         {orders.map((order) => (
           <div key={order._id} className='order-item'>

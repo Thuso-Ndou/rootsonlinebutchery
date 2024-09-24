@@ -5,6 +5,7 @@ import upload from './upload-60.png';
 import profile from './profile-48.png';
 import logo from './transparent-logo.webp';
 import parcel2 from './parcel-48.png';
+import sort from './sort.png';
 
 export const assets ={
     parcel,
@@ -14,4 +15,5 @@ export const assets ={
     profile,
     logo,
     parcel2,
+    sort
 }

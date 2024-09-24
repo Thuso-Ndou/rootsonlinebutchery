@@ -45,3 +45,13 @@
         width: 40px;
     }
 }
+
+.sortData{
+    font-weight: 500;
+}
+
+.hsort{
+    display: flex;
+    justify-content: space-around;
+    gap: 83%;
+}
