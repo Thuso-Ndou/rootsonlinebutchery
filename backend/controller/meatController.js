@@ -49,10 +49,16 @@ const removeMeat = async (req,res) => {
 const searchProducts = async (req, res) => {
     try {
         const query = req.query.query; // Get the search query from request parameters
-        const products = await meatModel.find({ 
-            name: { $regex: query, $options: 'i' } // Case-insensitive search for product names
+        console.log(query);
+        let products = await meatModel.find({ 
+            "$or":[
+                {name: { $regex: query}},
+                {description: { $regex: query}},
+                {category: { $regex: query}}
+            ] // Case-insensitive search for product names
         });
         res.json({ success: true, products });
+        res.send(products);
     } catch (error) {
         console.error("Error searching products:", error);
         res.json({ success: false, message: "Error fetching search results" });

@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
+import FoodItem from '../../components/FoodItem/FoodItem';
+import './Search.css';
 
 const SearchResults = () => {
     const [products, setProducts] = useState([]);
@@ -30,17 +32,12 @@ const SearchResults = () => {
     if (error) return <div>{error}</div>;
 
     return (
-        <div>
+        <div className='food-display' id='food-display'>
             <h1>Search Results for {query}</h1>
-            <div>
+            <div className='food-display-list'>
                 {products.length > 0 ? (
-                    products.map(product => (
-                        <div key={product._id}>
-                            <img src={`/images/${product.image}`} alt={product.name} />
-                            <h2>{product.name}</h2>
-                            <p>{product.description}</p>
-                            <p>${product.price}</p>
-                        </div>
+                    products.map((product,index) => (
+                        <FoodItem key={index} id={product._id} name={product.name} description={product.description} price={product.price} image={product.image}/>
                     ))
                 ) : (
                     <p>No products found for {query}.</p>
