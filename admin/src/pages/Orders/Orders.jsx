@@ -6,13 +6,15 @@ import { assets } from '../../assets/assets';
 
 const Orders = ({ url }) => {
   const [orders, setOrders] = useState([]);
+  const [isAscending, setIsAscending] = useState(true); // Track the sort order
 
   // Function to fetch orders
   const fetchOrders = async () => {
     try {
       const response = await axios.get(`${url}/api/order/list`);
       if (response.data.success) {
-        setOrders(response.data.data);
+        const sortedOrders = response.data.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        setOrders(sortedOrders); // Set initially sorted orders
       } else {
         toast.error("Error fetching orders");
       }
@@ -20,6 +22,17 @@ const Orders = ({ url }) => {
       console.error("Error fetching orders:", error);
       toast.error("Error fetching orders");
     }
+  };
+
+  // Function to sort orders by date
+  const sortData = () => {
+    const sortedOrders = [...orders].sort((a, b) => {
+      const dateA = new Date(a.createdAt);
+      const dateB = new Date(b.createdAt);
+      return isAscending ? dateA - dateB : dateB - dateA; // Toggle between ascending and descending
+    });
+    setOrders(sortedOrders);
+    setIsAscending(!isAscending); // Flip the sorting order
   };
 
   // Function to change order status
@@ -50,7 +63,7 @@ const statusHandler = async (event, orderId) => {
     <div className='order add'>
       <div className="hsort">
         <h3>Recent Orders</h3>
-        <p className="sortData">Sort <img src={assets.sort}/></p>
+        <p className="sortData">Sort by date {!isAscending?<img src={assets.sort} onClick={sortData}/>:<img src={assets.sortA} onClick={sortData}/>}</p>
       </div>
       <div className="order-list">
         {orders.map((order) => (
