@@ -107,7 +107,6 @@ app.get("/reports/provinceData", async (req, res) => {
                 }
             }
         ]);
-        console.log(provinceData);
         res.status(200).json(provinceData);
     } catch (error) {
         res.status(500).json({ message: "Failed to fetch province data" });
