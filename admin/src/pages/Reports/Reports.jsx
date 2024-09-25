@@ -1,40 +1,49 @@
 import { BsFillArchiveFill, BsFillGrid3X3GapFill, BsPeopleFill, BsGraphUp} from 'react-icons/bs'
  import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend,  ResponsiveContainer, LineChart, Line } from 'recharts';
+ import axios from 'axios';
+ import { useEffect, useState } from 'react';
  import './Reports.css';
 
 function Reports() {
 
-    const data = [
-        {
-          name: 'Gauteng',
-          province: 2400,
-        },
-        {
-          name: 'Limpopo',
-          province: 1398,
-        },
-        {
-          name: 'Free State',
-          province: 9800,
-        },
-        {
-          name: 'KZN',
-          province: 3908,
-        },
-        {
-          name: 'Eastern Cape',
-          province: 4800,
-        },
-        {
-          name: 'Western Cape',
-          province: 3800,
-        },
-        {
-          name: 'Northern Cape',
-          province: 4300,
-        },
-      ];
+    const [productCount, setProductCount] = useState(0);
+    const [categoryCount, setCategoryCount] = useState(0);
+    const [customerCount, setCustomerCount] = useState(0);
+    const [revenue, setRevenue] = useState(0);
+    const [provinceData, setProvinceData] = useState([]);
      
+    // Fetch data from backend
+  useEffect(() => {
+    // Replace these with your actual backend API endpoints
+    const fetchReportsData = async () => {
+      try {
+        // Fetch total products
+        const productRes = await axios.get('/api/products/total');
+        setProductCount(productRes.data.totalProducts);
+
+        // Fetch total categories
+        const categoryRes = await axios.get('/api/categories/total');
+        setCategoryCount(categoryRes.data.totalCategories);
+
+        // Fetch total customers
+        const customerRes = await axios.get('/api/customers/total');
+        setCustomerCount(customerRes.data.totalCustomers);
+
+        // Fetch total revenue
+        const revenueRes = await axios.get('/api/revenue');
+        setRevenue(revenueRes.data.totalRevenue);
+
+        // Fetch province data
+        const provinceRes = await axios.get('/api/provinces/stats');
+        setProvinceData(provinceRes.data.provinces);
+
+      } catch (error) {
+        console.error("Error fetching reports data:", error);
+      }
+    };
+
+    fetchReportsData();
+  }, []);
 
   return (
     <main className='main-container'>
@@ -48,28 +57,28 @@ function Reports() {
                     <h3>PRODUCTS</h3>
                     <BsFillArchiveFill className='card_icon'/>
                 </div>
-                <h1>300</h1>
+                <h1>{productCount}</h1>
             </div>
             <div className='card'>
                 <div className='card-inner'>
                     <h3>CATEGORIES</h3>
                     <BsFillGrid3X3GapFill className='card_icon'/>
                 </div>
-                <h1>12</h1>
+                <h1>{categoryCount}</h1>
             </div>
             <div className='card'>
                 <div className='card-inner'>
                     <h3>CUSTOMERS</h3>
                     <BsPeopleFill className='card_icon'/>
                 </div>
-                <h1>33</h1>
+                <h1>{customerCount}</h1>
             </div>
             <div className='card'>
                 <div className='card-inner'>
                     <h3>REVENUE</h3>
                     <BsGraphUp className='card_icon'/>
                 </div>
-                <h1>R42</h1>
+                <h1>R{revenue}</h1>
             </div>
         </div>
 
@@ -78,7 +87,7 @@ function Reports() {
         <BarChart
           width={500}
           height={300}
-          data={data}
+          data={provinceData}
           margin={{
             top: 5,
             right: 30,
@@ -100,7 +109,7 @@ function Reports() {
                 <LineChart
                 width={500}
                 height={300}
-                data={data}
+                data={provinceData}
                 margin={{
                     top: 5,
                     right: 30,
