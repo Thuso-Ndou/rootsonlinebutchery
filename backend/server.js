@@ -56,10 +56,12 @@ app.get("/reports/productCount", async (req, res) => {
     }
 });
 
-// api for counting category
+// API for counting category
 app.get("/reports/categoryCount", async (req, res) => {
     try {
-        const categoryCount = await product.distinct("category").length;
+        // Retrieve distinct categories and count them
+        const distinctCategories = await product.distinct("category");
+        const categoryCount = distinctCategories.length; // Count the distinct categories
         res.status(200).json({ categoryCount });
     } catch (error) {
         res.status(500).json({ message: "Failed to fetch category count" });
@@ -96,14 +98,14 @@ app.get("/reports/provinceData", async (req, res) => {
             {
                 $group: {
                     _id: "$province",
-                    count: { $sum: 1 }
+                    order: { $sum: 1 }
                 }
             },
             {
                 $project: {
                     _id: 0,
                     name: "$_id", // Rename _id to name for the chart's X-axis
-                    count: "$count"
+                    order: "$order"
                 }
             }
         ]);

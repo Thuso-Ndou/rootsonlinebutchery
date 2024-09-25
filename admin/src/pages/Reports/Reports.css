@@ -62,4 +62,15 @@
     margin-top: 60px;
     height: 300px;
   }
+
+  .address-list{
+    margin-top: 20px;
+    text-align: center;
+    color: #6d6d6d;
+  }
+
+  .data-list{
+    text-align: center;
+    color: #6d6d6d;
+  }
   

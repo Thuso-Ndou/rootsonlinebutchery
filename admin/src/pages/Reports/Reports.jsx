@@ -170,7 +170,7 @@ function Reports() {
                 <Tooltip />
                 <Legend />
                 <CartesianGrid strokeDasharray="3 3" />
-                <Bar dataKey="count" fill="#364968" background={{ fill: '#eee' }} />
+                <Bar dataKey="order" fill="#364968" background={{ fill: '#eee' }} />
               </BarChart>
             </ResponsiveContainer>
 
@@ -191,17 +191,16 @@ function Reports() {
                 <YAxis />
                 <Tooltip />
                 <Legend />
-                <Line type="monotone" dataKey="count" stroke="#ff6473" activeDot={{ r: 8 }} />
+                <Line type="monotone" dataKey="order" stroke="#ff6473" activeDot={{ r: 8 }} />
               </LineChart>
             </ResponsiveContainer>
           </>
         ) : (
-          <p>No province data available</p>
+          <p className='data-list'>No province data available</p>
         )}
       </div>
-
       <div className='address-list'>
-        <h3>Addresses</h3>
+        <h3>Number Of Orders Based On Province</h3>
         {Array.isArray(addressData) && addressData.length > 0 ? (
           addressData.map((address, index) => (
             <div key={index} className='address-item'>
@@ -209,7 +208,7 @@ function Reports() {
             </div>
           ))
         ) : (
-          <p>No address data available</p>
+          <p></p>
         )}
       </div>
     </main>
