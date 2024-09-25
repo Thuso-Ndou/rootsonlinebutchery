@@ -9,6 +9,9 @@ import orderRouter from "./routes/orderRoute.js";
 import addressRouter from "./routes/addressRoute.js";
 import authMiddleWare from "./middleware/auth.js";
 import product from "./model/meatModel.js";
+import user from "./model/userModel.js";
+import address from "./model/addressModel.js";
+import order from "./model/orderModel.js";
 
 // app config
 const app = express();
@@ -30,6 +33,7 @@ app.use("/api/cart", cartRouter);
 app.use("/api/order", orderRouter);
 app.use("/api/address", addressRouter);
 
+// product search api
 app.get("/search/:key", async (req, res) => {
     let data = await product.find(
         {
@@ -41,6 +45,75 @@ app.get("/search/:key", async (req, res) => {
     });
     res.send(data);
 });
+
+// api for counting products
+app.get("/reports/productCount", async (req, res) => {
+    try {
+        const productCount = await product.countDocuments();
+        res.status(200).json({ productCount });
+    } catch (error) {
+        res.status(500).json({ message: "Failed to fetch product count" });
+    }
+});
+
+// api for counting category
+app.get("/reports/categoryCount", async (req, res) => {
+    try {
+        const categoryCount = await product.distinct("category").length;
+        res.status(200).json({ categoryCount });
+    } catch (error) {
+        res.status(500).json({ message: "Failed to fetch category count" });
+    }
+});
+
+//api for counting customers
+app.get("/reports/customerCount", async (req, res) => {
+    try {
+        const customerCount = await user.countDocuments();
+        res.status(200).json({ customerCount });
+    } catch (error) {
+        res.status(500).json({ message: "Failed to fetch customer count" });
+    }
+});
+
+// api for revenue
+app.get("/reports/revenue", async (req, res) => {
+    try {
+        const totalRevenue = await order.aggregate([
+            { $group: { _id: null, total: { $sum: "$amount" } } }
+        ]);
+        const revenue = totalRevenue.length ? totalRevenue[0].total : 0;
+        res.status(200).json({ revenue });
+    } catch (error) {
+        res.status(500).json({ message: "Failed to fetch revenue" });
+    }
+});
+
+// api for getting address
+app.get("/reports/provinceData", async (req, res) => {
+    try {
+        const provinceData = await address.aggregate([
+            {
+                $group: {
+                    _id: "$province",
+                    count: { $sum: 1 }
+                }
+            },
+            {
+                $project: {
+                    _id: 0,
+                    name: "$_id", // Rename _id to name for the chart's X-axis
+                    count: "$count"
+                }
+            }
+        ]);
+        console.log(provinceData);
+        res.status(200).json(provinceData);
+    } catch (error) {
+        res.status(500).json({ message: "Failed to fetch province data" });
+    }
+});
+
 
 // test API
 app.get("/", (req, res) => {

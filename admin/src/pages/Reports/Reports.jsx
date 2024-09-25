@@ -6,44 +6,111 @@ import { BsFillArchiveFill, BsFillGrid3X3GapFill, BsPeopleFill, BsGraphUp} from 
 
 function Reports() {
 
-    const [productCount, setProductCount] = useState(0);
-    const [categoryCount, setCategoryCount] = useState(0);
-    const [customerCount, setCustomerCount] = useState(0);
-    const [revenue, setRevenue] = useState(0);
-    const [provinceData, setProvinceData] = useState([]);
-     
-    // Fetch data from backend
+  const [productCount, setProductCount] = useState(0);
+  const [categoryCount, setCategoryCount] = useState(0);
+  const [customerCount, setCustomerCount] = useState(0);
+  const [provinceData, setProvinceData] = useState([]);
+  const [addressData, setAddressData] = useState([]); // New state for address data
+  const [revenue, setRevenue] = useState(0);
+
   useEffect(() => {
-    // Replace these with your actual backend API endpoints
-    const fetchReportsData = async () => {
-      try {
-        // Fetch total products
-        const productRes = await axios.get('/api/products/total');
-        setProductCount(productRes.data.totalProducts);
-
-        // Fetch total categories
-        const categoryRes = await axios.get('/api/categories/total');
-        setCategoryCount(categoryRes.data.totalCategories);
-
-        // Fetch total customers
-        const customerRes = await axios.get('/api/customers/total');
-        setCustomerCount(customerRes.data.totalCustomers);
-
-        // Fetch total revenue
-        const revenueRes = await axios.get('/api/revenue');
-        setRevenue(revenueRes.data.totalRevenue);
-
-        // Fetch province data
-        const provinceRes = await axios.get('/api/provinces/stats');
-        setProvinceData(provinceRes.data.provinces);
-
-      } catch (error) {
-        console.error("Error fetching reports data:", error);
-      }
-    };
-
-    fetchReportsData();
+    // Fetch product count
+    axios.get("http://localhost:4000/reports/productCount")
+      .then(response => {
+        console.log("Product Count Response:", response.data);
+        setProductCount(response.data?.productCount || 0);  // Fallback to 0 if undefined
+      })
+      .catch(error => {
+        if (error.response) {
+          console.error("Error Response:", error.response.data);
+        } else if (error.request) {
+          console.error("Error Request:", error.request);
+        } else {
+          console.error("General Error:", error.message);
+        }
+      });
+  
+    // Fetch category count
+    axios.get("http://localhost:4000/reports/categoryCount")
+      .then(response => {
+        console.log("Category Count Response:", response.data);
+        setCategoryCount(response.data?.categoryCount || 0);  // Fallback to 0 if undefined
+      })
+      .catch(error => {
+        if (error.response) {
+          console.error("Error Response:", error.response.data);
+        } else if (error.request) {
+          console.error("Error Request:", error.request);
+        } else {
+          console.error("General Error:", error.message);
+        }
+      });
+  
+    // Fetch customer count
+    axios.get("http://localhost:4000/reports/customerCount")
+      .then(response => {
+        console.log("Customer Count Response:", response.data);
+        setCustomerCount(response.data?.customerCount || 0);  // Fallback to 0 if undefined
+      })
+      .catch(error => {
+        if (error.response) {
+          console.error("Error Response:", error.response.data);
+        } else if (error.request) {
+          console.error("Error Request:", error.request);
+        } else {
+          console.error("General Error:", error.message);
+        }
+      });
+  
+    // Fetch revenue
+    axios.get("http://localhost:4000/reports/revenue")
+      .then(response => {
+        console.log("Revenue Response:", response.data);
+        setRevenue(response.data?.revenue || 0);  // Fallback to 0 if undefined
+      })
+      .catch(error => {
+        if (error.response) {
+          console.error("Error Response:", error.response.data);
+        } else if (error.request) {
+          console.error("Error Request:", error.request);
+        } else {
+          console.error("General Error:", error.message);
+        }
+      });
+  
+    // Fetch province data
+    axios.get("http://localhost:4000/reports/provinceData")
+      .then(response => {
+        console.log("Province Data Response:", response.data);
+        setProvinceData(response.data || []);  // Fallback to empty array if undefined
+      })
+      .catch(error => {
+        if (error.response) {
+          console.error("Error Response:", error.response.data);
+        } else if (error.request) {
+          console.error("Error Request:", error.request);
+        } else {
+          console.error("General Error:", error.message);
+        }
+      });
+  
+    // Fetch address data
+    axios.get("http://localhost:4000/reports/addressData")
+      .then(response => {
+        console.log("Address Data Response:", response.data);
+        setAddressData(response.data || []);  // Fallback to empty array if undefined
+      })
+      .catch(error => {
+        if (error.response) {
+          console.error("Error Response:", error.response.data);
+        } else if (error.request) {
+          console.error("Error Request:", error.request);
+        } else {
+          console.error("General Error:", error.message);
+        }
+      });
   }, []);
+  
 
   return (
     <main className='main-container'>
@@ -83,50 +150,68 @@ function Reports() {
         </div>
 
         <div className='charts'>
-        <ResponsiveContainer width="100%" height="100%">
-        <BarChart
-          width={500}
-          height={300}
-          data={provinceData}
-          margin={{
-            top: 5,
-            right: 30,
-            left: 20,
-            bottom: 5,
-          }}
-          barSize={20}
-        >
-          <XAxis dataKey="name" scale="point" padding={{ left: 10, right: 10 }} />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <CartesianGrid strokeDasharray="3 3" />
-          <Bar dataKey="province" fill="#364968" background={{ fill: '#eee' }} />
-        </BarChart>
-      </ResponsiveContainer>
-
-            <ResponsiveContainer width="100%" height="100%">
-                <LineChart
+        {Array.isArray(provinceData) && provinceData.length > 0 ? (
+          <>
+            <ResponsiveContainer width="100%" height={300}>
+              <BarChart
                 width={500}
                 height={300}
                 data={provinceData}
                 margin={{
-                    top: 5,
-                    right: 30,
-                    left: 20,
-                    bottom: 5,
+                  top: 5,
+                  right: 30,
+                  left: 20,
+                  bottom: 5,
                 }}
-                >
+                barSize={20}
+              >
+                <XAxis dataKey="name" scale="point" padding={{ left: 10, right: 10 }} />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <CartesianGrid strokeDasharray="3 3" />
+                <Bar dataKey="count" fill="#364968" background={{ fill: '#eee' }} />
+              </BarChart>
+            </ResponsiveContainer>
+
+            <ResponsiveContainer width="100%" height={300}>
+              <LineChart
+                width={500}
+                height={300}
+                data={provinceData}
+                margin={{
+                  top: 5,
+                  right: 30,
+                  left: 20,
+                  bottom: 5,
+                }}
+              >
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="name" />
                 <YAxis />
                 <Tooltip />
                 <Legend />
-                <Line type="monotone" dataKey="province" stroke="#ff6473" activeDot={{ r: 8 }} />
-                </LineChart>
+                <Line type="monotone" dataKey="count" stroke="#ff6473" activeDot={{ r: 8 }} />
+              </LineChart>
             </ResponsiveContainer>
+          </>
+        ) : (
+          <p>No province data available</p>
+        )}
+      </div>
 
-        </div>
+      <div className='address-list'>
+        <h3>Addresses</h3>
+        {Array.isArray(addressData) && addressData.length > 0 ? (
+          addressData.map((address, index) => (
+            <div key={index} className='address-item'>
+              <h4>{address.street}, {address.city}, {address.province}</h4>
+            </div>
+          ))
+        ) : (
+          <p>No address data available</p>
+        )}
+      </div>
     </main>
   )
 }
