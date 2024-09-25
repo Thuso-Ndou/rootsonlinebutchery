@@ -7,14 +7,16 @@ import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
+// Function to handle placing an order
 const placeOrder = async (req, res) => {
+    // Frontend URL for redirection after payment
     const frontend_url = "http://localhost:5173";
 
     try {
         const { firstName, lastName, street, suburb, city, zipCode, province, email, phone } = req.body.address;
         const userID = req.body.userId;
 
-        // Create address
+        // Create the address for the order
         const addressResult = await createAddress({
             userID,
             firstName,
@@ -28,17 +30,19 @@ const placeOrder = async (req, res) => {
             phone,
         });
 
+        // Handle failure in address creation
         if (!addressResult.success) {
             return res.status(400).json({ success: false, message: addressResult.message });
         }
 
         const { items } = req.body;
 
+        // Ensure there are items to process and that it's an array
         if (!items || !Array.isArray(items)) {
             return res.status(400).json({ success: false, message: "Items are required and should be an array." });
         }
         
-        // Proceed with your order processing
+        // Create order items for each product in the cart
         const orderItems = await Promise.all(
             items.map(async (item) => {
                 const orderItem = new orderItemModel({ product: item.productId, quantity: item.quantity });
@@ -46,7 +50,7 @@ const placeOrder = async (req, res) => {
             })
         );
 
-        // Create the order
+        // Create a new order with user, items, amount, and address information
         const newOrder = new orderModel({
             userId: req.body.userId,
             items: orderItems.map(item => item._id),
@@ -54,13 +58,13 @@ const placeOrder = async (req, res) => {
             address: addressResult.address._id
         });
 
-        // Save the order in the database
+        // Save the order to the database
         await newOrder.save();
 
-        // Clear user cart
+        // Clear the user's cart after placing the order
         await cartItemModel.deleteMany({ userId: req.body.userId });
 
-        // Define line_items here
+        // Define Stripe line items for payment
         const line_items = items.map((item) => {
             const price = item.price && typeof item.price === 'number' ? item.price * 100 : 0;
             const quantity = item.quantity && typeof item.quantity === 'number' ? item.quantity : 1;
@@ -71,9 +75,9 @@ const placeOrder = async (req, res) => {
 
             return {
                 price_data: {
-                    currency: "zar",
+                    currency: "zar", // Set currency for payment
                     product_data: {
-                        name: item.name, // Use the correct property
+                        name: item.name, // Use product name for payment description
                     },
                     unit_amount: price,
                 },
@@ -81,24 +85,27 @@ const placeOrder = async (req, res) => {
             };
         });
 
+        // Add delivery charges to the order
         line_items.push({
             price_data: {
                 currency: "zar",
                 product_data: {
-                    name: "Delivery Charges",
+                    name: "Delivery Charges", // Flat delivery charge of 20 ZAR
                 },
                 unit_amount: 20 * 100,
             },
             quantity: 1,
         });
 
+        // Create a Stripe session for checkout
         const session = await stripe.checkout.sessions.create({
             line_items: line_items,
-            mode: 'payment',
+            mode: 'payment', // Mode set to payment for Stripe checkout
             success_url: `${frontend_url}/verify?success=true&orderId=${newOrder._id}&amount=${newOrder.amount}`,
             cancel_url: `${frontend_url}/verify?success=false&orderId=${newOrder._id}&amount=${newOrder.amount}`,
         })
 
+        // Return session URL for redirecting to Stripe checkout
         res.json({success: true,session_url: session.url})
 
     } catch (error) {
@@ -107,25 +114,28 @@ const placeOrder = async (req, res) => {
     }
 }
 
+// Function to verify the order after payment
 const verifyOrder = async (req, res) => {
     const {orderId,success,amount} = req.body;
     console.log(`Order ${orderId} amount ${amount} was successfully verified in ${success}`);
     try {
+        // Create a new payment record upon successful verification
         if(success=="true"){
             // Create a new payment document
             const newPayment = new paymentModel({
             price: amount, // Use the amount from the request
             payment: true, // Use the payment
-            cart_id: orderId, // Reference to the order
+            cart_id: orderId, // Reference the order for which payment was made
             });
             await newPayment.save();
 
-            // Update the order to reference the payment
+             // Update the order to link to the payment
             await orderModel.findByIdAndUpdate(orderId, { payment: newPayment._id});
 
             res.json({success:true,message:"Payment successful"})
         }
         else{
+            // If payment failed, delete the order
             await orderModel.findByIdAndDelete(orderId);
             res.json({success:false,message:"Payment failed"})
         }
@@ -135,7 +145,7 @@ const verifyOrder = async (req, res) => {
     }
 };
 
-// user orders frontend linkup
+// Function to fetch user orders and link them to frontend
 const userOrders = async (req, res) => {
     try {
         // Fetch orders for the specific user and populate the items and product details
@@ -157,7 +167,7 @@ const userOrders = async (req, res) => {
     }
 }
 
-// find all orders for customers and them on the admin panel
+// Function to list all orders for admin panel
 const listOrders = async (req, res) => {
     try {
         // Fetch all orders and populate the references for items, product, and address
@@ -178,7 +188,7 @@ const listOrders = async (req, res) => {
     }
 }
 
-// api for updating status
+// Function to update the status of an order
 const updateStatus = async (req, res) => {
     try {
         // Find the order by ID and update its status
