@@ -53,6 +53,11 @@ export default function Nav({setShowLogin}) {
         }
     };
 
+    // Handle click to navigate to Help page
+    const handleHelpClick = () => {
+        navigate('/help'); // Navigate to the /help page
+    };
+
   return (
     <div className='navbar'>
         <Link to='/' onClick={()=>setMenu("home")}><img src={assets.logo} alt=""  className='logo'/></Link>
@@ -73,7 +78,7 @@ export default function Nav({setShowLogin}) {
                     <img src={assets.search} alt="search" onClick={handleSearchSubmit}/>
                     </div>
             </form>
-                <div><img src={assets.helpY}/></div>
+                <div><img src={assets.helpY} onClick={handleHelpClick}/></div>
             <div className='navbar-search-icon'>
                 <Link to='/cart'><img src={assets.cart} alt="cart" /></Link>
                 <div className={getTotalAmount()===0?"":"dot"}></div>

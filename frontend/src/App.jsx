@@ -4,6 +4,7 @@ import Home from "./pages/Home/Home";
 import Cart from "./pages/Cart/Cart";
 import Nav from "./components/Navbar/Nav";
 import SearchResults from "./pages/Search/SearchResults";
+import Help from "./pages/Help/Help";
 import PlaceOrder from "./pages/PlaceOrder/PlaceOrder";
 import Footer from "./components/Footer/Footer";
 import { useState } from "react";
@@ -27,6 +28,7 @@ const App = () => {
         <Route path="/verify" element={<Verify/>} />
         <Route path="/trackorders" element={<TrackOrders/>}/>
         <Route path="/search" element={<SearchResults/>} />
+        <Route path="/help" element={<Help />} />
       </Routes>
     </div>
     <Footer/>
