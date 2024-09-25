@@ -1,9 +1,5 @@
-import 
-{ BsFillArchiveFill, BsFillGrid3X3GapFill, BsPeopleFill, BsFillBellFill}
- from 'react-icons/bs'
- import 
- { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line } 
- from 'recharts';
+import { BsFillArchiveFill, BsFillGrid3X3GapFill, BsPeopleFill, BsGraphUp} from 'react-icons/bs'
+ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend,  ResponsiveContainer, LineChart, Line } from 'recharts';
  import './Reports.css';
 
 function Reports() {
@@ -84,10 +80,10 @@ function Reports() {
             </div>
             <div className='card'>
                 <div className='card-inner'>
-                    <h3>ALERTS</h3>
-                    <BsFillBellFill className='card_icon'/>
+                    <h3>REVENUE</h3>
+                    <BsGraphUp className='card_icon'/>
                 </div>
-                <h1>42</h1>
+                <h1>R42</h1>
             </div>
         </div>
 

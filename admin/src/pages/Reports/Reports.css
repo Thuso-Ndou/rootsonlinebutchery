@@ -30,19 +30,19 @@
   }
   
   .card:first-child {
-    background-color: #2962ff;
+    background-color: #ff6473;
   }
   
   .card:nth-child(2) {
-    background-color: #ff6d00;
+    background-color: #757882;
   }
   
   .card:nth-child(3) {
-    background-color: #2e7d32;
+    background-color: #6ef7c8;
   }
   
   .card:nth-child(4) {
-    background-color: #d50000;
+    background-color: #5cc1b3;
   }
   
   .card-inner {
