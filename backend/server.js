@@ -8,6 +8,7 @@ import 'dotenv/config';
 import orderRouter from "./routes/orderRoute.js";
 import addressRouter from "./routes/addressRoute.js";
 import authMiddleWare from "./middleware/auth.js";
+import product from "./model/meatModel.js";
 
 // app config
 const app = express();
@@ -28,6 +29,18 @@ app.use("/api/user", userRouter);
 app.use("/api/cart", cartRouter);
 app.use("/api/order", orderRouter);
 app.use("/api/address", addressRouter);
+
+app.get("/search/:key", async (req, res) => {
+    let data = await product.find(
+        {
+            "$or":[
+                {name: {$regex:req.params.key,$options: 'i'}},
+                {description: {$regex:req.params.key,$options: 'i'}},
+                {category: {$regex:req.params.key,$options: 'i'}}
+            ]
+    });
+    res.send(data);
+});
 
 // test API
 app.get("/", (req, res) => {

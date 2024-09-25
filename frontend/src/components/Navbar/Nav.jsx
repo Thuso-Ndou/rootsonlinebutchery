@@ -69,15 +69,10 @@ export default function Nav({setShowLogin}) {
             {/* Search Input */}
             <form onSubmit={handleSearchSubmit}>
                     <div className="navbar-search">
-                    <input 
-                        type="text" className='search-input'
-                        placeholder="Search for products..." 
-                        value={searchQuery} 
-                        onChange={(e) => setSearchQuery(e.target.value)} 
-                    />
+                    <input type="text" className='search-input' placeholder="Search for products..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
                     <img src={assets.search} alt="search" onClick={handleSearchSubmit}/>
                     </div>
-                </form>
+            </form>
                 <div><img src={assets.helpY}/></div>
             <div className='navbar-search-icon'>
                 <Link to='/cart'><img src={assets.cart} alt="cart" /></Link>
