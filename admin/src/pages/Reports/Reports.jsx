@@ -106,7 +106,7 @@ function Reports() {
           <Tooltip />
           <Legend />
           <CartesianGrid strokeDasharray="3 3" />
-          <Bar dataKey="pv" fill="#8884d8" background={{ fill: '#eee' }} />
+          <Bar dataKey="pv" fill="#364968" background={{ fill: '#eee' }} />
         </BarChart>
       </ResponsiveContainer>
 
@@ -127,7 +127,7 @@ function Reports() {
                 <YAxis />
                 <Tooltip />
                 <Legend />
-                <Line type="monotone" dataKey="pv" stroke="#8884d8" activeDot={{ r: 8 }} />
+                <Line type="monotone" dataKey="pv" stroke="#ff6473" activeDot={{ r: 8 }} />
                 <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
                 </LineChart>
             </ResponsiveContainer>
