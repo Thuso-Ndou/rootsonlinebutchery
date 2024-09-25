@@ -7,6 +7,7 @@ import logo from './transparent-logo.webp';
 import parcel2 from './parcel-48.png';
 import sort from './sort.png';
 import sortA from './sort-a.png';
+import report from './reports.png';
 
 export const assets ={
     parcel,
@@ -17,5 +18,6 @@ export const assets ={
     logo,
     parcel2,
     sort,
-    sortA
+    sortA,
+    report
 }

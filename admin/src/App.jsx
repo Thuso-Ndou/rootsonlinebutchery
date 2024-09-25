@@ -5,6 +5,7 @@ import {Routes, Route} from 'react-router-dom';
 import List from './pages/List/List';
 import Add from './pages/Add/Add';
 import Orders from './pages/Orders/Orders';
+import Reports from './pages/Reports/Reports';
 import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -23,6 +24,7 @@ const App = () => {
           <Route path='/add' element={<Add url={url}/>}/>
           <Route path='/list' element={<List url={url}/>}/>
           <Route path='/orders' element={<Orders url={url}/>}/>
+          <Route path='/reports' element={<Reports url={url}/>}/>
         </Routes>
       </div>
     </div>
