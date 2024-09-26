@@ -24,7 +24,8 @@ const data = [
     },
     {
         question: 'How do I track my order?',
-        answer: 'You can track your order by going to the "View Orders" section from the navigation bar. Click the "Track Order" button next to your order to see its current status, which may show stages like "Food Packaging," "Out for Delivery," or "Delivered" depending on the progress of your delivery.'
+        answer: 'You can track your order by going to the "View Orders" section from the navigation bar. Click the "Track Order" button next to your order to see its current status, which may show stages like "Food Packaging," "Out for Delivery," or "Delivered" depending on the progress of your delivery.',
+        id: 'delivery'
     },
     {
         question: 'Can I change the delivery address after placing an order?',
@@ -35,17 +36,19 @@ const data = [
         answer: 'We accept various payment methods, including credit/debit cards and mobile payments. You can choose your preferred payment method during checkout.'
     },
     {
-        question: 'Is my payment information secure?',
-        answer: 'Yes, we use secure encryption protocols to protect your payment information. Your payment details are never stored on our servers and are processed securely through our payment gateway.'
-    },
-    {
         question: 'Can I cancel my order after payment?',
         answer: 'You can cancel your order before making a payment but once payment is made successfully you can not cancel. If the order has already been dispatched, please refer to our return and refund policy.'
     },
     {
         question: 'Do you provide refunds for orders?',
-        answer: 'We do not provide refunds as most of the products sold are fresh meat. If there is an issue with your order, please contact customer support, and we will do our best to assist you.'
-    }    
+        answer: 'We do not provide refunds as most of the products sold are fresh meat. If there is an issue with your order, please contact customer support, and we will do our best to assist you.',
+        id: 'policy-refund'
+    },
+    {
+        question: 'About Us',
+        answer: 'We are dedicated to providing high-quality fresh meat products to our customers. Our goal is to deliver your orders efficiently while ensuring you enjoy the best quality available. Customer satisfaction is our top priority, and we are here to assist you with any inquiries or concerns.',
+        id: 'about-us'
+    }        
 ]
 
 const Help = () => {
@@ -63,7 +66,7 @@ const Help = () => {
         <div className='wrapper'>
             <div className="accordian">
                 {data.map((item, i) => (
-                    <div className="item">
+                    <div className="item" key={i} id={item.id}>
                         <div className="title" onClick={() => toggle(i)}>
                             <h2>{item.question}</h2>
                             <span>{selected === i ? '-' : '+'}</span>

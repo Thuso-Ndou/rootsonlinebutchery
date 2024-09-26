@@ -1,6 +1,7 @@
 //import React from 'react'
 import { assets } from '../../assets/assets';
 import './Footer.css';
+import { Link } from 'react-router-dom';
 
 export default function Footer() {
   return (
@@ -18,10 +19,19 @@ export default function Footer() {
         <div className="footer-content-center">
           <h2>Butchery</h2>
           <ul>
-            <li>Home</li>
-            <li>About Us</li>
-            <li>Delivery</li>
-            <li>Privacy Policy</li>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              {/* Use Link to navigate to /help and scroll to About Us */}
+              <Link to="/help#about-us">About Us</Link>
+            </li>
+            <li>
+            <Link to="/help#delivery">Delivery</Link>
+            </li>
+            <li>
+            <Link to="/help#policy-refund">Refund Policy</Link>
+              </li>
           </ul>
         </div>
         <div className="footer-content-right">
