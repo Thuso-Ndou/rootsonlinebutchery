@@ -11,13 +11,13 @@
 }
 
 .item{
-    background: #a19b9b;
+    background: #7a7474;
     margin-bottom: 5px;
     padding: 10px 20px;
 }
 
 .title{
-    color: #bc2c2c;
+    color: #49557e;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -25,7 +25,7 @@
 }
 
 .content{
-    color: #100f0f;
+    color: #fff;
     max-height: 0;
     overflow: hidden;
     transition: all 0.5s cubic-bezier(0,1,0,1);
