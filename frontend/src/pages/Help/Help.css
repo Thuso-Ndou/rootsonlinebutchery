@@ -1,0 +1,38 @@
+.wrapper{
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.accordian{
+    width: 500px;
+}
+
+.item{
+    background: #a19b9b;
+    margin-bottom: 5px;
+    padding: 10px 20px;
+}
+
+.title{
+    color: #bc2c2c;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    cursor: pointer;
+}
+
+.content{
+    color: #100f0f;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0,1,0,1);
+}
+
+.content.show{
+    height: auto;
+    max-height: 9999px;
+    transition: all 0.5s cubic-bezier(1,0,1,0);
+}
