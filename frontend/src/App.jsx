@@ -1,3 +1,11 @@
+// TP Ndou 37853058
+// TD Maela 40104648
+// TB Thoka 38126400
+// B Singama 41724690
+// DP Maseko 29382378
+// JA Mokoena 41719638
+// A Makwakwa 35987782
+// KM Radingwana 42638046
 //import React from 'react'
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home/Home";
