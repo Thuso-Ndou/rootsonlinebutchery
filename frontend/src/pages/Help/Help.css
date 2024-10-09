@@ -11,7 +11,7 @@
 }
 
 .item{
-    background: #7a7474;
+    background: #c3bebe;
     margin-bottom: 5px;
     padding: 10px 20px;
 }
@@ -25,7 +25,7 @@
 }
 
 .content{
-    color: #fff;
+    color: #2b2525;
     max-height: 0;
     overflow: hidden;
     transition: all 0.5s cubic-bezier(0,1,0,1);
