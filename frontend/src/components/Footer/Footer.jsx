@@ -9,7 +9,7 @@ export default function Footer() {
       <div className='footer-content'>
         <div className="footer-content-left">
           <img src={assets.logo} alt='' className='logo'/>
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cum maiores reprehenderit quis impedit in error quas vel beatae quidem dolor, saepe odio quae et atque nihil voluptatem iure! Fugiat, quo!</p>
+          <p>Roots Butchery is your trusted neighborhood source for the finest cuts of fresh meat. We take pride in offering a wide variety of high-quality meats, sourced from local farmers. Our goal is to provide customers with fresh and responsibly sourced meat products that you can trust for every meal.</p>
           <div className="footer-social-icons">
             <img src={assets.fab} alt='' className='icons'/>
             <img src={assets.insta} alt='' className='icons'/>
